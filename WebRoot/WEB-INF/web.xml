@@ -6,6 +6,17 @@
   <param-name>uname</param-name>
   <param-value>zhangsan</param-value>
  </context-param>
+  <servlet>
+    <description>login operate</description>
+    <display-name>User login Servlet</display-name>
+    <servlet-name>AdminServlet</servlet-name>
+    <servlet-class>com.stu.servlet.AdminServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AdminServlet</servlet-name>
+    <url-pattern>/admin</url-pattern>
+  </servlet-mapping>
  <welcome-file-list>
   <welcome-file>index.jsp</welcome-file>
  </welcome-file-list>
