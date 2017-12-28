@@ -5,10 +5,28 @@ package com.stu.model;
  * 
  */
 public class Admin {
-
+	private int uid;
 	private String uName;
 	private String uAccouts;
-	private String uPwd;
+	private String uPassword;
+
+	/**
+	 * 获取管理员标识ID
+	 * 
+	 * @return
+	 */
+	public int getUid() {
+		return uid;
+	}
+
+	/**
+	 * 设置管理员标识ID
+	 * 
+	 * @param uid
+	 */
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
 
 	/**
 	 * 获取姓名
@@ -51,17 +69,17 @@ public class Admin {
 	 * 
 	 * @return
 	 */
-	public String getUPwd() {
-		return uPwd;
+	public String getUPassword() {
+		return uPassword;
 	}
 
 	/**
 	 * 设置密码
 	 * 
-	 * @param pwd
+	 * @param password
 	 */
-	public void setUPwd(String pwd) {
-		uPwd = pwd;
+	public void setUPassword(String password) {
+		uPassword = password;
 	}
 
 }

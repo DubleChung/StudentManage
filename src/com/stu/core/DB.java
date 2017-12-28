@@ -10,7 +10,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class DB {
-	private Connection con;
+	private Connection conn;
 	private PreparedStatement pstm;
 	private String url;
 	private String user;
@@ -53,31 +53,31 @@ public class DB {
 	 * @return
 	 */
 	public Connection getConn() {
-		if (con == null) {
+		if (conn == null) {
 			try {
-				con = DriverManager.getConnection(url, user, password);
+				conn = DriverManager.getConnection(url, user, password);
 			} catch (SQLException e) {
 				System.out.println("创建数据库连接失败！");
 				e.printStackTrace();
 			}
 		}
-		return con;
+		return conn;
 	}
 
 	/**
 	 * @功能：对数据库进行增、删、改、查操作 ?"占位符赋值的数据
-	 * @param sql
-	 * @param params
+	 * @param sql		待执行的SQL语句
+	 * @param params	如果没有参数就填null
 	 */
 	public void doPstm(String sql, Object[] params) {
 		if (sql != null && !sql.equals("")) {
 			if (params == null)
 				params = new Object[0];
 			getConn();
-			if (con != null) {
+			if (conn != null) {
 				try {
 					System.out.println(sql);
-					pstm = con.prepareStatement(sql,
+					pstm = conn.prepareStatement(sql,
 							ResultSet.TYPE_SCROLL_INSENSITIVE,
 							ResultSet.CONCUR_READ_ONLY);
 					for (int i = 0; i < params.length; i++) {
@@ -94,7 +94,7 @@ public class DB {
 
 	/**
 	 * @功能：获取调用doPstm()方法执行查询操作后返回的ResultSet结果集
-	 * @返回值：ResultSet
+	 * @返回值：ResultSet		结果集
 	 * @throws SQLException
 	 */
 	public ResultSet getRs() throws SQLException {
@@ -103,7 +103,7 @@ public class DB {
 
 	/**
 	 * @功能：获取调用doPstm()方法执行更新操作后返回影响的记录数
-	 * @返回值：int
+	 * @返回值：int				执行SQL语句影响的记录数
 	 * @throws SQLException
 	 */
 	public int getCount() throws SQLException {
@@ -122,8 +122,8 @@ public class DB {
 			e.printStackTrace();
 		}
 		try {
-			if (con != null) {
-				con.close();
+			if (conn != null) {
+				conn.close();
 			}
 		} catch (SQLException e) {
 			System.out.println("关闭con对象失败！");

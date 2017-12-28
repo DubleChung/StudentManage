@@ -14,7 +14,7 @@ public interface AdminService {
 	 * @param model
 	 * @return
 	 */
-	boolean adminLogin(Admin model);
+	Admin adminLogin(Admin model);
 
 	/**
 	 * 修改管理员密码

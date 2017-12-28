@@ -5,5 +5,10 @@
 	<classpathentry kind="con" path="com.genuitec.eclipse.j2eedt.core.J2EE14_CONTAINER"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jstl.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/standard.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files/tomcat-6.0.9/lib/jsp-api.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files/mysql-5.7.18-winx64/jdbc/mysql-connector-java-5.1.45-bin.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files/tomcat-6.0.9/lib/jasper.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files/tomcat-6.0.9/lib/jasper-el.jar"/>
+	<classpathentry kind="lib" path="D:/Program Files/tomcat-6.0.9/lib/jasper-jdt.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

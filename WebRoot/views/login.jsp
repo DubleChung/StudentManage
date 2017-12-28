@@ -38,7 +38,7 @@
 				<img src="images/login/avtar.png" />
 			</div>
 			<div style="color: white"></div>
-			<form action="loginController.do?doLogin" method="post" check="loginController.do?doCheck">
+			<form action="/login" method="post" check="/login">
 				<input type="text" id="username" name="username" placeholder="ÇëÊäÈëÓÃ»§Ãû">
 				<input type="password" id="password" name="password" placeholder="ÇëÊäÈëÃÜÂë">
 				<input type="text" id="captcha" name="captcha" placeholder="ÑéÖ¤Âë">
@@ -47,10 +47,10 @@
 				</div>
 				<br />
 				<div id="errormsg" style="color: red"></div>
-			</form>
 			<div class="signin">
-				<input id="login" type="button" value="µÇÂ½">
+				<input id="login" type="submit" value="µÇÂ½">
 			</div>
+			</form>
 		</div>
 		</section>
 	</body>
