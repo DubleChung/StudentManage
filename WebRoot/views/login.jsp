@@ -5,7 +5,6 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
@@ -17,11 +16,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 		<link href="css/style.css" rel='stylesheet' type='text/css' />
-		<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
-		<script type="text/javascript" src="js/app/login.js"></script>
+        <script src="scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
 	</head>
 	<body>
-		<section class="login-form-wrap">
+		<div class="login-form-wrap">
 		<h1>学生成绩管理系统</h1>
 		<div class="login-form">
 			<div class="head-info">
@@ -38,20 +36,15 @@
 				<img src="images/login/avtar.png" />
 			</div>
 			<div style="color: white"></div>
-			<form action="/login" method="post" check="/login">
-				<input type="text" id="username" name="username" placeholder="请输入用户名">
-				<input type="password" id="password" name="password" placeholder="请输入密码">
-				<input type="text" id="captcha" name="captcha" placeholder="验证码">
-				<div>
-					<img style="float: right;" title="点击更换" id="img_captcha" onclick="javascript:refreshCaptcha();" src="captchaCode">
-				</div>
-				<br />
-				<div id="errormsg" style="color: red"></div>
+			<form action="admin" method="post">
+				<input type="hidden" name="cmd" value="login"/>
+				<input type="text" id="username" name="uAccounts" placeholder="请输入用户名">
+				<input type="password" id="password" name="uPassword" placeholder="请输入密码">
 			<div class="signin">
-				<input id="login" type="submit" value="登陆">
+				<input class="submit" id="login" type="submit" value="登陆" />
 			</div>
 			</form>
 		</div>
-		</section>
+		</div>
 	</body>
 </html>

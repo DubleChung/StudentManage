@@ -1,6 +1,6 @@
 package com.stu.service;
 
-import com.stu.model.Admin;
+import com.stu.model.AdminBean;
 
 /***
  * 管理员Service
@@ -14,7 +14,14 @@ public interface AdminService {
 	 * @param model
 	 * @return
 	 */
-	Admin adminLogin(Admin model);
+	AdminBean adminLogin(AdminBean model);
+	
+	/**
+	 * 添加管理员
+	 * @param model
+	 * @return
+	 */
+	boolean addAdmin(AdminBean model);
 
 	/**
 	 * 修改管理员密码
@@ -23,6 +30,6 @@ public interface AdminService {
 	 * @param newPassword
 	 * @return
 	 */
-	boolean changePassword(Admin model, String newPassword);
+	boolean changePassword(AdminBean model, String newPassword);
 
 }

@@ -52,7 +52,7 @@ public class DB {
 	 * @功能：获取数据库连接
 	 * @return
 	 */
-	public Connection getConn() {
+	private Connection getConn() {
 		if (conn == null) {
 			try {
 				conn = DriverManager.getConnection(url, user, password);
@@ -82,6 +82,7 @@ public class DB {
 							ResultSet.CONCUR_READ_ONLY);
 					for (int i = 0; i < params.length; i++) {
 						pstm.setObject(i + 1, params[i]);
+						System.out.println(params[i].toString() + ",");
 					}
 					pstm.execute();
 				} catch (SQLException e) {

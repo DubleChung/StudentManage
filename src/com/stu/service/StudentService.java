@@ -2,7 +2,8 @@ package com.stu.service;
 
 import java.util.List;
 
-import com.stu.model.Student;
+import com.stu.model.PageBean;
+import com.stu.model.StudentBean;
 
 /***
  * 学生信息Service
@@ -15,23 +16,14 @@ public interface StudentService {
 	 * @param model
 	 * @return
 	 */
-	boolean addStudent(Student model);
+	boolean addStudent(StudentBean model);
 
-	/***
+	/**
 	 * 查询学生信息
-	 * 
-	 * @param sql
-	 * @param parameters
+	 * @param model 查询条件
+	 * @param currentPage 当有页码
+	 * @param pageCount 页大小
 	 * @return
 	 */
-	List getStudents(String sql, Object[] parameters);
-
-	/***
-	 * 获取单个学生信息
-	 * 
-	 * @param stu_no
-	 * @return
-	 */
-	Student getStudentByStuNo(String stu_no);
-
+	PageBean<StudentBean> getStudents(StudentBean model,int currentPage,int pageCount);
 }

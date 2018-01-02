@@ -3,7 +3,7 @@ package com.stu.service;
 
 import java.util.List;
 
-import com.stu.model.Courses;
+import com.stu.model.CourseBean;
 
 /**
  * 课程Service
@@ -17,7 +17,7 @@ public interface CoursesService {
 	 * @param model
 	 * @return
 	 */
-	boolean addCourses(Courses model);
+	boolean addCourses(CourseBean model);
 
 	/**
 	 * 查询多个课程信息
@@ -34,5 +34,5 @@ public interface CoursesService {
 	 * @param cs_no
 	 * @return
 	 */
-	Courses getCoursesByNo(String cs_no);
+	CourseBean getCoursesByNo(String cs_no);
 }

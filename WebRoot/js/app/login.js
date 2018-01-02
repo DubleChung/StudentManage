@@ -14,7 +14,6 @@ function refreshCaptcha() {
 }
 
 
-//回车登录
 $(document).keydown(function(e){
 	if(e.keyCode == 13) {
 		submitform();
@@ -22,17 +21,17 @@ $(document).keydown(function(e){
 });
 
 function submitform(){
-	$("#errormsg").text("");
-	if($("#username").val() == ""){
-		$("#errormsg").text("请输入用户名！");
+	$("#errormsg").text('');
+	if($("#username").val() == ''){
+		$("#errormsg").text('');
 		return false;
 	}
-	if($("#password").val() == ""){
-		$("#errormsg").text("请输入密码！");
+	if($("#password").val() == ''){
+		$("#errormsg").text('');
 		return false;
 	}
-	if($("#captcha").val() == ""){
-		$("#errormsg").text("请输入验证码！");
+	if($("#captcha").val() == ''){
+		$("#errormsg").text('');
 		return false;
 	}
 	
@@ -44,16 +43,16 @@ function submitform(){
 	var captcha = "captcha="+$("#captcha").val();
 	var formData = username+"&"+password+"&"+captcha;
 	
-	loading('登陆中..', 1);
+	loading('', 1);
 	setTimeout(function () { 
 		unloading();
 		$.ajax({
 			async : false,
 			cache : false,
 			type : 'POST',
-			url : checkurl,// 请求的action路径
+			url : checkurl,
 			data : formData,
-			error : function() {// 请求失败处理函数
+			error : function() {
 			},
 			success : function(d) {
 				if (d.success) {
@@ -67,7 +66,6 @@ function submitform(){
 	
 }
 
-//加载信息
 function loading(name, overlay) {
 	$('section').append('<div id="overlay"></div><div id="preloader">' + name + '</div>');
 	if (overlay == 1) {

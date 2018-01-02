@@ -3,94 +3,94 @@ $.extend($.fn.validatebox.defaults.rules, {
 		        validator: function (value, param) {
 		            return /^[\u0391-\uFFE5]+$/.test(value);
 		        },
-		        message: '请输入汉字'
+		        message: ''
 		    },
 		    ZIP: {
 		        validator: function (value, param) {
 		            return /^[1-9]\d{5}$/.test(value);
 		        },
-		        message: '邮政编码不存在'
+		        message: ''
 		    },
 		    QQ: {
 		        validator: function (value, param) {
 		            return /^[1-9]\d{4,10}$/.test(value);
 		        },
-		        message: 'QQ号码不正确'
+		        message: ''
 		    },
 		    mobile: {
 		        validator: function (value, param) {
 		            return /^0?1[3|4|5|8][0-9]\d{8}$/.test(value);
 		        },
-		        message: '手机号码不正确'
+		        message: ''
 		    },
 		    loginName: {
 		        validator: function (value, param) {
 		            return /^[\u0391-\uFFE5\w]+$/.test(value);
 		        },
-		        message: '登录名称只允许汉字、英文字母、数字及下划线。'
+		        message: ''
 		    },
 		    safepass: {
 		        validator: function (value, param) {
 		            return safePassword(value);
 		        },
-		        message: '密码由字母和数字组成，至少6位'
+		        message:''
 		    },
 		    passwordEqual: {
 		        validator: function (value1, value2) {
 		        	var param = document.getElementById(value2);
 		            return value1 == param.value;
 		        },
-		        message: '两次输入的密码不一至'
+		        message:''
 		    },
 		    passwordEqual: {
 		        validator: function (value1, value2) {
 		        	var param = document.getElementById(value2);
 		            return value1 == param.value;
 		        },
-		        message: '两次输入的密码不一至'
+		        message:''
 		    },
 		    lessThan: {
 		        validator: function (thus, that) {
 		        	var param = document.getElementById(that);
 		            return thus <= param.value;
 		        },
-		        message: '当前项的值不能大于上一项'
+		        message: ''
 		    },
 		    equalTo: {
 		        validator: function (value, param) {
 		            return value == $(param[0]).val;
 		        },
-		        message: '两次输入的字符不一致'
+		        message: ''
 		    },
 		    number: {
 		        validator: function (value, param) {
 		            return /^\d+$/.test(value);
 		        },
-		        message: '请输入数字'
+		        message: ''
 		    },
 		    idcard: {
 		        validator: function (value, param) {
 		            return idCard(value);
 		        },
-		        message:'请输入正确的身份证号码'
+		        message:''
 		    },
-		    intOrFloat : {// 验证整数或小数 
+		    intOrFloat : {
 		        validator : function(value) { 
 		            return /^\d+(\.\d+)?$/i.test(value); 
 		        }, 
-		        message : '请输入数字，并确保格式正确' 
+		        message : ''
 		    }, 
-		    currency : {// 验证货币 
+		    currency : {
 		        validator : function(value) { 
 		            return /^\d+(\.\d+)?$/i.test(value); 
 		        }, 
-		        message : '货币格式不正确' 
+		        message : ''
 		    },
-		    ip : {// 验证IP地址 
+		    ip : {
 		        validator : function(value) { 
 		            return /d+.d+.d+.d+/i.test(value); 
 		        }, 
-		        message : 'IP地址格式不正确' 
+		        message : ''
 		    },
 		    checkRemote:{  
 		        validator: function (value) {  
@@ -105,7 +105,7 @@ $.extend($.fn.validatebox.defaults.rules, {
 		            }).responseText;    
 		            return checkR==="true";   
 		        },  
-		        message: '系统中存在，请修改用户名'  
+		        message: '' 
 		    },
 		    checkNum:{  
 		        validator: function (value) {  
@@ -120,7 +120,7 @@ $.extend($.fn.validatebox.defaults.rules, {
 		            }).responseText;    
 		            return checkR==="true";   
 		        },  
-		        message: '系统中存在，请修改学号!'  
+		        message: ''
 		    }, 
 		    checkTeachernum:{  
 		        validator: function (value) {  
@@ -135,11 +135,11 @@ $.extend($.fn.validatebox.defaults.rules, {
 		            }).responseText;    
 		            return checkR==="true";   
 		        },  
-		        message: '系统中存在，请修改工号!'  
+		        message: ''
 		    }
 		});
 
-		/* 密码由字母和数字组成，至少6位 */
+
 		var safePassword = function (value) {
 		    return !(/^(([A-Z]*|[a-z]*|\d*|[-_\~!@#\$%\^&\*\.\(\)\[\]\{\}<>\?\\\/\'\"]*)|.{0,5})$|\s/.test(value));
 		}

@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee   http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
- <context-param>
-  <description>这是一个测试</description>
-  <param-name>uname</param-name>
-  <param-value>zhangsan</param-value>
- </context-param>
-  <servlet>
-    <description>login operate</description>
-    <display-name>User login Servlet</display-name>
-    <servlet-name>AdminServlet</servlet-name>
-    <servlet-class>com.stu.servlet.AdminServlet</servlet-class>
-  </servlet>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+ <servlet>
+  <description>This is the description of my J2EE component</description>
+  <display-name>This is the display name of my J2EE component</display-name>
+  <servlet-name>AdminServlet</servlet-name>
+  <servlet-class>com.stu.servlet.AdminServlet</servlet-class>
+ </servlet>
+ <servlet>
+  <description>This is the description of my J2EE component</description>
+  <display-name>This is the display name of my J2EE component</display-name>
+  <servlet-name>StudentServlet</servlet-name>
+  <servlet-class>com.stu.servlet.StudentServlet</servlet-class>
+ </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>StudentServlet</servlet-name>
-    <servlet-class>com.stu.servlet.StudentServlet</servlet-class>
+    <servlet-name>ScoreServlet</servlet-name>
+    <servlet-class>com.stu.servlet.ScoreServlet</servlet-class>
   </servlet>
 
-
+ <servlet-mapping>
+  <servlet-name>AdminServlet</servlet-name>
+  <url-pattern>/admin</url-pattern>
+ </servlet-mapping>
+ <servlet-mapping>
+  <servlet-name>StudentServlet</servlet-name>
+  <url-pattern>/student</url-pattern>
+ </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>AdminServlet</servlet-name>
-    <url-pattern>/admin</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>StudentServlet</servlet-name>
-    <url-pattern>/student</url-pattern>
+    <servlet-name>ScoreServlet</servlet-name>
+    <url-pattern>/score</url-pattern>
   </servlet-mapping>
  <welcome-file-list>
-  <welcome-file>index.jsp</welcome-file>
+  <welcome-file>/views/login.jsp</welcome-file>
  </welcome-file-list>
  <login-config>
   <auth-method>BASIC</auth-method>

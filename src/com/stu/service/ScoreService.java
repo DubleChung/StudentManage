@@ -2,36 +2,36 @@ package com.stu.service;
 
 import java.util.List;
 
-import com.stu.model.Score;
+import com.stu.model.PageBean;
+import com.stu.model.ScoreBean;
 
 /***
  * 成绩信息Service
  * 
  */
 public interface ScoreService {
-	/***
+	/**
 	 * 添加成绩信息
-	 * 
-	 * @param model
+	 * @param stuNo 学号
+	 * @param course 课程
+	 * @param score 成绩
 	 * @return
 	 */
-	boolean addStudent(Score model);
+	boolean addStudentScore(String stuNo, String course, float score);
 
-	/***
+	/**
+	 * 删除成绩信息
+	 * @param sid 成绩标识ID
+	 * @return
+	 */
+	boolean deleteStudentScore(int sid);
+	
+	/**
 	 * 查询成绩信息
-	 * 
-	 * @param sql
-	 * @param parameters
+	 * @param stuNo 学号
+	 * @param currentPage 当前页码
+	 * @param pageSize 页大小
 	 * @return
 	 */
-	List getStudentsScore(String sql, Object[] parameters);
-
-	/***
-	 * 获取单个学生成绩信息
-	 * 
-	 * @param stu_no
-	 * @return
-	 */
-	Score getStudentScoreByStuNo(String stu_no);
-
+	PageBean<ScoreBean> getStudentScore(String stuNo,int currentPage,int pageSize);
 }

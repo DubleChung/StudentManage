@@ -133,7 +133,7 @@ h1 {
 	  font-weight: 100;
 	  border-bottom: 1px solid#484856;
  }
-input[type="button"]{
+.submit{
   font-size: 30px;
   color: #fff;
   outline: none;
@@ -151,7 +151,7 @@ input[type="button"]{
 	-o-border-bottom-right-radius: 15px;
 	cursor: pointer;
 }
-input[type="button"]:hover {
+.submit:hover {
 	background: #ff2775;
   border-bottom-left-radius: 15px;
 	-webkit-border-bottom-left-radius: 15px;
