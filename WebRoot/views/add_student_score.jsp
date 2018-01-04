@@ -60,6 +60,17 @@
 					alert('分数不能为空！');
 					return false;
 				}
+				if(parseFloat(score) > 150.0)
+				{
+					alert('确认有这么高的分吗？');
+					return false;
+				}
+				if(parseFloat(score) < 0.0)
+				{
+					alert('0分已经够惨烈的了，还需要给负分吗。');
+					return false;
+				}
+				
 				//正则检查检查分数值是否是数值( 正则表达式：^\d+(\.\d+)?$  检测浮点数  )
 				if(!(/^\d+(\.\d+)?$/gi.test(score)))
 				{
@@ -113,7 +124,7 @@
 										<div class="control-group">
 											<label class="control-label" for="basicinput"><span class="red">*</span>成绩：</label>
 											<div class="controls">
-												<input class="span4" type="text" id="txtScore" name="Score" placeholder="填写成绩"/>
+												<input class="span4" type="text" id="txtScore" name="Score" maxlength="3" placeholder="填写成绩"/>
 											</div>
 										</div>
 
