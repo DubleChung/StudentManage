@@ -94,7 +94,7 @@
 								<b>Ìí¼Ó³É¼¨</b>
 							</div>
 							<div class="module-body">
-									<form action="student" class="form-horizontal row-fluid" method="post" >
+									<form action="student" class="form-horizontal row-fluid" method="post" onsubmit="return formCheck();">
 										
 										<div class="control-group">
 											<label class="control-label"><span class="red">*</span>ÐÕÃû£º</label>
