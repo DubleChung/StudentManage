@@ -33,8 +33,42 @@
 				});
 			});
 		
+			
+			//表单检查 ，如果返回false则不会提交表单，true提交。
 			function formCheck(){
+			
+				//检查姓名值 
+				var stuName = $.trim($('#txtStuName').val());
+				if(stuName.length < 1)
+				{
+					alert('姓名不能为空！');
+					return false;
+				}
 				
+				//检查课程值
+				var course = $.trim($('#txtCourse').val());
+				if(course.length < 1)
+				{
+					alert('课程不能为空！');
+					return false;
+				}
+				
+				//检查分数值 
+				var score = $.trim($('#txtScore').val());
+				if(score.length < 1)
+				{
+					alert('分数不能为空！');
+					return false;
+				}
+				//正则检查检查分数值是否是数值( 正则表达式：^\d+(\.\d+)?$  检测浮点数  )
+				if(!(/^\d+(\.\d+)?$/gi.test(score)))
+				{
+					alert('分数请填写正确数值！');
+					return false;
+				}
+				
+				//默认返回true 
+				return true;
 			}
 		</script>
 	</head>
@@ -62,26 +96,24 @@
 							<div class="module-body">
 									<form action="student" class="form-horizontal row-fluid" method="post" >
 										
-										
 										<div class="control-group">
 											<label class="control-label"><span class="red">*</span>姓名：</label>
 											<div class="controls">
 												<input class="span4" type="text" id="txtStuName" name="stuName" placeholder="填写姓名，会自动搜索" autocomplete="off"/>
 											</div>
 										</div>
-
 										
 										<div class="control-group">
 											<label class="control-label" for="basicinput">课程：</label>
 											<div class="controls">
-												<input class="span4" type="text" name="Course" placeholder="填写课程"/>
+												<input class="span4" type="text" id="txtCourse" name="Course" placeholder="填写课程"/>
 											</div>
 										</div>
 
 										<div class="control-group">
 											<label class="control-label" for="basicinput"><span class="red">*</span>成绩：</label>
 											<div class="controls">
-												<input class="span4" type="text" name="stuNo" placeholder="填写成绩"/>
+												<input class="span4" type="text" id="txtScore" name="Score" placeholder="填写成绩"/>
 											</div>
 										</div>
 

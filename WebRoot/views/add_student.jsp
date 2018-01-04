@@ -16,8 +16,52 @@
 		<jsp:include page="/views/include_common.jsp"/>
 		
 		<script type="text/javascript">
+		
+			//表单检查 ，如果返回false则不会提交表单，true提交。
 			function formCheck(){
+			
+				//检查学生姓名值 
+				var stuName = $.trim($('#txtStuName').val());
+				if(stuName.length < 1)
+				{
+					alert('姓名不能为空！');
+					return false;
+				}
 				
+				//检查年龄值是否是数值
+				var stuAge = $.trim($('#txtStuAge').val());
+				if(/[^\d+]/gi.test(stuAge))
+				{
+					alert('年龄填写整数值！');
+					return false;
+				}
+			
+				//检查学生学号值 
+				var stuNo = $.trim($('#txtStuNo').val());
+				if(stuNo.length < 1)
+				{
+					alert('学号不能为空！');
+					return false;
+				}
+				
+				//检查班级值
+				var cno = $.trim($('#txtCno').val());
+				if(cno.length < 1)
+				{
+					alert('班级不能为空！');
+					return false;
+				}
+				
+				//检查年级值
+				var gno = $.trim($('#txtGno').val());
+				if(gno.length < 1)
+				{
+					alert('年级不能为空！');
+					return false;
+				}
+				
+				//默认返回true 
+				return true;
 			}
 		</script>
 	</head>
@@ -43,13 +87,13 @@
 								<b>添加学生</b>
 							</div>
 							<div class="module-body">
-									<form action="student" class="form-horizontal row-fluid" method="post">
+									<form action="student" class="form-horizontal row-fluid" method="post" onsubmit="return formCheck();">
 										
 										
 										<div class="control-group">
 											<label class="control-label" for="basicinput"><span class="red">*</span>姓名：</label>
 											<div class="controls">
-												<input class="span3" type="text" name="stuName" placeholder="填写姓名"/>
+												<input class="span3" type="text" id="txtStuName" name="stuName" placeholder="填写姓名"/>
 											</div>
 										</div>
 
@@ -70,35 +114,35 @@
 										<div class="control-group">
 											<label class="control-label" for="basicinput">年龄：</label>
 											<div class="controls">
-												<input class="span3" type="text" name="stuAge" maxlength="2" placeholder="填写年龄"/>
+												<input class="span3" type="text" id="txtStuAge" name="stuAge" maxlength="2" placeholder="填写年龄"/>
 											</div>
 										</div>
 
 										<div class="control-group">
 											<label class="control-label" for="basicinput"><span class="red">*</span>学号：</label>
 											<div class="controls">
-												<input class="span3" type="text" name="stuNo" placeholder="填写学号"/>
+												<input class="span3" type="text" id="txtStuNo" name="stuNo" placeholder="填写学号"/>
 											</div>
 										</div>
 
 										<div class="control-group">
 											<label class="control-label" for="basicinput"><span class="red">*</span>班级：</label>
 											<div class="controls">
-												<input class="span3" type="text" name="cno" placeholder="选择班级"/>
+												<input class="span3" type="text" id="txtCno" name="cno" placeholder="选择班级"/>
 											</div>
 										</div>
 										
 										<div class="control-group">
 											<label class="control-label" for="basicinput"><span class="red">*</span>年级：</label>
 											<div class="controls">
-												<input class="span3" type="text" name="gno" placeholder="填写年级"/>
+												<input class="span3" type="text" id="txtGno" name="gno" placeholder="填写年级"/>
 											</div>
 										</div>
 										
 										<div class="control-group">
 											<label class="control-label" for="basicinput">住址：</label>
 											<div class="controls">
-												<input class="span8" type="text" name="stuAddr" placeholder="填写住址" />
+												<input class="span8" type="text" id="txtStuAddr" name="stuAddr" placeholder="填写住址" />
 											</div>
 										</div>
 
