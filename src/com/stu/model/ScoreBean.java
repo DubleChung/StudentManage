@@ -2,14 +2,16 @@ package com.stu.model;
 
 /**
  * 成绩类
+ * 
  * @author Administrator
- *
+ * 
  */
 public class ScoreBean {
 	private int sid;
 	private float score;
 	private String course;
-	private String stuno;
+	private String stuName;
+	private String stuNo;
 
 	/**
 	 * 获取成绩标识ID
@@ -17,7 +19,7 @@ public class ScoreBean {
 	 * @return
 	 */
 	public int getSid() {
-		return sid;
+		return this.sid;
 	}
 
 	/**
@@ -35,7 +37,7 @@ public class ScoreBean {
 	 * @return
 	 */
 	public float getScore() {
-		return score;
+		return this.score;
 	}
 
 	/**
@@ -47,36 +49,56 @@ public class ScoreBean {
 		this.score = score;
 	}
 
-	/**
-	 * 获取学生学号
-	 * 
-	 * @return
-	 */
-	public String getStuno() {
-		return stuno;
-	}
 
 	/**
-	 * 设置学生学号
-	 * 
-	 * @param stuno
-	 */
-	public void setStuno(String stuno) {
-		this.stuno = stuno;
-	}
-	/**
 	 * 获取课程
+	 * 
 	 * @return
 	 */
 	public String getCourse() {
-		return course;
+		return this.course;
 	}
 
 	/**
 	 * 设置课程
+	 * 
 	 * @param course
 	 */
 	public void setCourse(String course) {
 		this.course = course;
+	}
+
+	/**
+	 * 获取学生姓名
+	 * 
+	 * @return
+	 */
+	public String getStuName() {
+		return this.stuName;
+	}
+
+	/**
+	 * 设置学生姓名
+	 * 
+	 * @param stuName
+	 */
+	public void setStuName(String stuName) {
+		this.stuName = stuName;
+	}
+
+	/**
+	 * 获取学号
+	 * @return
+	 */
+	public String getStuNo() {
+		return this.stuNo;
+	}
+
+	/**
+	 * 设置学号
+	 * @param stuNo
+	 */
+	public void setStuNo(String stuNo) {
+		this.stuNo = stuNo;
 	}
 }

@@ -82,7 +82,7 @@ public class DB {
 							ResultSet.CONCUR_READ_ONLY);
 					for (int i = 0; i < params.length; i++) {
 						pstm.setObject(i + 1, params[i]);
-						System.out.println(params[i].toString() + ",");
+						System.out.print(params[i].toString() + ",");
 					}
 					pstm.execute();
 				} catch (SQLException e) {

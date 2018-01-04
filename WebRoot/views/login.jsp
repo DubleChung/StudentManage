@@ -1,4 +1,5 @@
-<%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
+<%@ page language="java" import="java.util.*" pageEncoding="gbk"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -17,6 +18,11 @@
 		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 		<link href="css/style.css" rel='stylesheet' type='text/css' />
         <script src="scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
+        <c:if test="${!empty ErrMsg}">
+        <script type="text/javascript">
+        	alert('${ErrMsg}');
+        </script>
+        </c:if>
 	</head>
 	<body>
 		<div class="login-form-wrap">

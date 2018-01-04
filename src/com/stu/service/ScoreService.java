@@ -33,5 +33,5 @@ public interface ScoreService {
 	 * @param pageSize “≥¥Û–°
 	 * @return
 	 */
-	PageBean<ScoreBean> getStudentScore(String stuNo,int currentPage,int pageSize);
+	PageBean<ScoreBean> getStudentScore(String stuNo,String stuName,int currentPage,int pageSize);
 }

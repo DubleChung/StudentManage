@@ -56,8 +56,8 @@ public class AdminServlet extends HttpServlet {
 		// 根据不同的cmd执行不同的操作
 		String cmd = request.getParameter("cmd");
 		
-		//管理用户登录
-		if ("login".equals(cmd)) {
+		
+		if ("login".equals(cmd)) {//管理用户登录
 
 			// 实例化管理员类，取出登录表单中的参数值，并赋值给相应的属性
 			AdminBean adminBean = new AdminBean();
@@ -74,11 +74,11 @@ public class AdminServlet extends HttpServlet {
 	            hs.setAttribute("LoginUser",loginBean);//账号信息保存到Session
 	            
 	            request.getRequestDispatcher("index.jsp").forward(request, response); //到首页
+			}else{
+				request.setAttribute("ErrMsg", "用户名或密码错误！");
+	            request.getRequestDispatcher("/views/login.jsp").forward(request, response); //到首页
 			}
-		}
-		
-		//用户注册
-		else if("regist".equals(cmd))
+		} else if("changpwd".equals(cmd))//修改管理员密码
 		{
 			// 实例化管理员类，取出登录表单中的参数值，并赋值给相应的属性
 			AdminBean adminBean = new AdminBean();

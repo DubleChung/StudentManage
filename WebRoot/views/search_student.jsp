@@ -18,8 +18,8 @@
 		<script type="text/javascript">
 			function pageClick(pageIndex){
 				window.location.href = '<%=basePath %>student?cmd=stulist&currentPage=' + pageIndex 
-										+ '&stuName=' + $.trim($('stuName').val()) 
-										+ '&stuNo=' + $.trim($('stuNo').val());
+										+ '&stuName=' + $.trim($('txtStuName').val()) 
+										+ '&stuNo=' + $.trim($('txtStuNo').val());
 			}
 		</script>
 	</head>
@@ -49,9 +49,9 @@
 										<div class="control-group" style="height:35px;">
 											<input type="hidden" name="cmd" value="stulist"/>
 											<label class="control-label" style="width:65px;"><span class="red">*</span>–’√˚£∫</label>
-											<input class="span3" style="float:left;" type="text" name="stuName" value="${requestScope.stuName}" placeholder="ÃÓ–¥–’√˚"/>
+											<input class="span3" style="float:left;" type="text" id="txtStuName" name="stuName" value="${requestScope.stuName}" placeholder="ÃÓ–¥–’√˚"/>
 											<label class="control-label"  style="width:65px;"><span class="red">*</span>—ß∫≈£∫</label>
-											<input class="span3" style="float:left;" type="text" name="stuNo" value="${requestScope.stuNo}" placeholder="ÃÓ–¥—ß∫≈"/>
+											<input class="span3" style="float:left;" type="text" id="txtStuNo" name="stuNo" value="${requestScope.stuNo}" placeholder="ÃÓ–¥—ß∫≈"/>
 											<button type="submit left" class="btn btn-small btn-info icon-search" style="height:auto;margin-left:10px;">≤È—Ø</button>
 										</div>
 									</form>

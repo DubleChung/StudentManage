@@ -1,6 +1,9 @@
 package com.stu.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
@@ -49,17 +52,75 @@ public class StudentServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		// 设置响应内容类型
-		response.setContentType("text/html;charset=gbk");
 
 		String cmd = request.getParameter("cmd");
 		if ("add".equals(cmd)) {
+			// 设置响应内容类型
+			response.setContentType("text/html;charset=gbk");
 			// 添加学生信息
 			AddStudent(request, response);
 		} else if ("stulist".equals(cmd)) {
+			// 设置响应内容类型
+			response.setContentType("text/html;charset=gbk");
 			// 查询学生信息
 			QueryStudents(request, response);
+		} else if("json_stulist".equals(cmd)) {
+			// 设置响应内容类型
+	        response.setContentType("application/json;charset=gbk");
+			//根据姓名查询学生信息
+			QueryStudentToJson(request,response);
 		}
+	}
+	
+	/**
+	 * 根据姓名查询学生信息【只选10个出来】
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void QueryStudentToJson(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		//取出查询参数,如果没有提交查询参数,则值为空字符串
+		String stuName = (request.getParameter("query") != null ? request.getParameter("query") : "");
+		String a = StringUtils.toChinese(stuName);
+		String b = StringUtils.toUTF8(a);
+		// 实例化学生数据库操作类
+		StudentDao studentDao = new StudentDao();
+		// 执行数据查询
+		List stuList = studentDao.getStudents(StringUtils.toUTF8(stuName));//转换下gbk编码,因为数据库用的是gbk编码
+		
+		//json 数据字符串
+		StringBuffer sb = new StringBuffer();
+
+		//定义用于jquery autocomplete插件用的json字符串
+		sb.append("{\"query\": \"" + stuName + "\",\"suggestions\":[");
+		try {
+			if(stuList != null)
+			{
+				for (int i = 0; i < stuList.size(); i++) {
+
+					//转换成学生实体
+					StudentBean studentBean = (StudentBean)stuList.get(i);
+					
+					//取出学生实体中的字段值
+					sb.append("{");//json字符串开头
+					sb.append(String.format("\"value\":\"%s\"," , studentBean.getStuName()));//姓名
+					sb.append(String.format("\"data\":\"%s\"" , studentBean.getStuNo()));//学号
+					sb.append(String.format("%s%s" ,"}" , (i < stuList.size() -1 ? "," : "")));//json 字符串结尾拼接
+				}
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		sb.append("]}");
+		
+        //返回json
+        PrintWriter out = response.getWriter();
+        out.write(sb.toString());
+        out.flush();
+        out.close();
 	}
 	
 	/**
@@ -76,14 +137,14 @@ public class StudentServlet extends HttpServlet {
 		// 页码，默认页码是1
 		int currentPage = Integer.parseInt(request.getParameter("currentPage") != null ? request.getParameter("currentPage") : "1");
 		// 页大小，默认页大小是10
-		int pageCount = Integer.parseInt(request.getParameter("pageCount") != null ? request.getParameter("pageCount") : "10");
+		int pageSize = Integer.parseInt(request.getParameter("pageSize") != null ? request.getParameter("pageSize") : "10");
 
 		// 对不合法的页码和页大小重新赋值
 		if (currentPage < 1) {
 			currentPage = 1;// 默认页码是1
 		}
-		if (pageCount < 10) {
-			pageCount = 10;// 默认页大小是10
+		if (pageSize < 10) {
+			pageSize = 10;// 默认页大小是10
 		}
 
 		//取出查询参数,如果没有提交查询参数,则值为空字符串
@@ -97,7 +158,7 @@ public class StudentServlet extends HttpServlet {
 		// 实例化学生数据库操作类
 		StudentDao studentDao = new StudentDao();
 		// 执行数据查询
-		PageBean<StudentBean> pageBean = studentDao.getStudents(studentBean, currentPage,pageCount);
+		PageBean<StudentBean> pageBean = studentDao.getStudents(studentBean, currentPage,pageSize);
 
 		// 向页面传递数据
 		request.setAttribute("pageBean", pageBean);//分页数据对象

@@ -70,7 +70,7 @@
 										<div class="control-group">
 											<label class="control-label" for="basicinput">ƒÍ¡‰£∫</label>
 											<div class="controls">
-												<input class="span3" type="text" name="stuAge" placeholder="ÃÓ–¥ƒÍ¡‰"/>
+												<input class="span3" type="text" name="stuAge" maxlength="2" placeholder="ÃÓ–¥ƒÍ¡‰"/>
 											</div>
 										</div>
 

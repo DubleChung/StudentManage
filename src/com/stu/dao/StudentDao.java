@@ -192,4 +192,61 @@ public class StudentDao implements StudentService {
 		//返回结果 
 		return totalCount;
 	}
+
+	/**
+	 * 根据姓名查询学生信息【只选10个出来】
+	 * @param stuName
+	 * @param currentPage
+	 * @param pageSize
+	 * @return
+	 */
+	public List getStudents(String stuName) {
+		
+		//结果列表
+		List stuList = new ArrayList<StudentBean>();
+		
+		//待执行的SQL语句
+		String sql = "select stuid,stuNo,stuName from t_student ";
+
+		//SQL语句参数
+		List params = new ArrayList();
+		
+		//拼接SQL语句和SQL参数
+		if(!stuName.isEmpty())
+		{
+			sql += " where stuName like ?";
+			params.add("%" + stuName + "%");//因为是模糊查询,所以把值的前后加了%
+		}
+		
+		//只取10条数据
+		sql += " limit 0,10";
+		
+		try {
+			
+			//执行SQL语句
+			db.doPstm(sql, params.toArray());
+			
+			//获取执行SQL后的结果集
+			ResultSet rs = db.getRs();
+			
+			if(rs != null)
+			{
+				while(rs.next())
+				{
+					//实例化学生类
+					StudentBean studentBean = new StudentBean();
+					studentBean.setStuid(rs.getInt("stuid"));//学生标识ID 
+					studentBean.setStuName(rs.getString("stuName"));//学生姓名
+					studentBean.setStuNo(rs.getString("stuNo"));//学号
+					
+					//添加到结果列表
+					stuList.add(studentBean);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return stuList;
+	}
 }

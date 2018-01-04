@@ -92,7 +92,7 @@ public class ScoreServlet extends HttpServlet {
 		}
 
 		// 请求回发
-		request.getRequestDispatcher("/views/add_student_score.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/search_student_score.jsp").forward(request, response);
 	}
 
 	/**
@@ -120,16 +120,19 @@ public class ScoreServlet extends HttpServlet {
 		}
 
 		// 取出查询参数,如果没有提交查询参数,则值为空字符串
+		//学号
 		String stuNo = (request.getParameter("stuNo") != null ? request.getParameter("stuNo") : "");
+		//学生姓名
+		String stuName = (request.getParameter("stuName") != null ? request.getParameter("stuName") : "");
 
 		// 实例化学生数据库操作类
 		ScoreDao scoreDao = new ScoreDao();
 		// 执行数据查询
-		PageBean<ScoreBean> pageBean = scoreDao.getStudentScore(stuNo,
-				currentPage, pageCount);
+		PageBean<ScoreBean> pageBean = scoreDao.getStudentScore(stuNo,stuName,currentPage, pageCount);
 
 		// 向页面传递数据
 		request.setAttribute("pageBean", pageBean);// 分页数据对象
+		request.setAttribute("stuName", stuName);// 姓名查询条件
 		request.setAttribute("stuNo", stuNo);// 学号查询条件
 
 		// 请求回发

@@ -50,7 +50,7 @@ public class ScoreDao implements ScoreService {
 	/**
 	 * 查询成绩信息
 	 */
-	public PageBean<ScoreBean> getStudentScore(String stuNo, int currentPage,
+	public PageBean<ScoreBean> getStudentScore(String stuNo,String stuName, int currentPage,
 			int pageSize) {
 
 		// 设置分页数据
@@ -65,12 +65,20 @@ public class ScoreDao implements ScoreService {
 		ArrayList params = new ArrayList();
 
 		// 拼接SQL语句
-		String sql = "select * from t_score where 1=1 ";
+		String sql = "select tb1.*,tb2.stuName " +
+				"from t_score as tb1 " +
+				"inner join t_student as tb2 on tb1.stuNo = tb2.stuNo " +
+				"where 1=1 ";
 
 		// 学号查询条件
 		if (!("".equals(stuNo))) {
-			sql += " and stuName = ? ";
+			sql += " and tb1.stuNo = ? ";
 			params.add(stuNo);// 学号
+		}
+		// 学生姓名查询条件
+		if (!("".equals(stuName))) {
+			sql += " and tb2.stuName = ? ";
+			params.add(stuName);// 学生姓名
 		}
 
 		// 分页参数
@@ -93,7 +101,8 @@ public class ScoreDao implements ScoreService {
 
 					// 分别取对应的字段值
 					scoreBean.setSid(rs.getInt("sid"));// 成绩标识ID
-					scoreBean.setStuno(rs.getString("stuNo"));// 学号
+					scoreBean.setStuNo(rs.getString("stuNo"));// 学号
+					scoreBean.setStuName(rs.getString("stuName"));// 学生姓名
 					scoreBean.setCourse(rs.getString("course"));// 课程
 					scoreBean.setScore(rs.getFloat("score"));// 成绩
 
@@ -102,7 +111,7 @@ public class ScoreDao implements ScoreService {
 				}
 
 				// 在数据库中统计数据总条数
-				int totalCount = getStudentScoreCount(stuNo);
+				int totalCount = getStudentScoreCount(stuNo,stuName);
 
 				// 设置分页Bean中的总数据条数
 				pageBean.setTotalCount(totalCount);
@@ -124,7 +133,7 @@ public class ScoreDao implements ScoreService {
 	 * @return
 	 * @throws SQLException
 	 */
-	private int getStudentScoreCount(String stuNo) throws SQLException {
+	private int getStudentScoreCount(String stuNo,String stuName) throws SQLException {
 		// 数据总条数
 		int totalCount = 0;
 
@@ -132,12 +141,20 @@ public class ScoreDao implements ScoreService {
 		ArrayList params = new ArrayList();
 
 		// 拼接SQL语句
-		String sql = "select count(stuid) as totalCount from t_score where 1=1 ";
+		String sql = "select count(tb1.sid) as totalCount " +
+				"from t_score as tb1 " +
+				"inner join t_student as tb2 on tb1.stuNo = tb2.stuNo " +
+				"where 1=1 ";
 
 		// 学号查询条件
 		if (!("".equals(stuNo))) {
-			sql += " and stuNo = ? ";
-			params.add(stuNo);
+			sql += " and tb1.stuNo = ? ";
+			params.add(stuNo);// 学号
+		}
+		// 学生姓名查询条件
+		if (!("".equals(stuName))) {
+			sql += " and tb2.stuName = ? ";
+			params.add(stuName);// 学生姓名
 		}
 
 		// 执行SQL语句

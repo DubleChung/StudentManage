@@ -25,6 +25,18 @@ public class StringUtils {
             return "";
         }
     }
+    public static String toUTF8(String strvalue) {
+        try {
+            if (strvalue == null) {
+                return "";
+            } else {
+                strvalue = new String(strvalue.getBytes("ISO8859_1"), "UTF-8");
+                return strvalue;
+            }
+        } catch (Exception e) {
+            return "";
+        }
+    }
 
 //对输入的字符串进行一次编码转换，防止SQL注入
     public static String StringtoSql(String str) {

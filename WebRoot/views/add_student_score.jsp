@@ -14,8 +14,25 @@
 		<title>添加学生成绩</title>
 		<!-- 引入公共网页头部 -->
 		<jsp:include page="/views/include_common.jsp"/>
-		
+		<script type="text/javascript" src="scripts/jquery.autocomplete.js"></script>
+		<style type="text/css">
+			.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
+			.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
+			.autocomplete-selected { background: #F0F0F0; }
+			.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
+		</style>
 		<script type="text/javascript">
+			$(function(){
+				$('#txtStuName').autocomplete({
+				    serviceUrl: 'student?cmd=json_stulist&currentPage=1&stuName=' + $.trim($('#txtStuName').val()),//只用姓名条件
+				    onSelect: function (data) {
+				    	if(window.console && window.console.log)
+				    		console.log(data);
+				    	$('#hdStuNo').val(data.val);
+       				}
+				});
+			});
+		
 			function formCheck(){
 				
 			}
@@ -43,13 +60,13 @@
 								<b>添加成绩</b>
 							</div>
 							<div class="module-body">
-									<form action="student" class="form-horizontal row-fluid" method="post">
+									<form action="student" class="form-horizontal row-fluid" method="post" >
 										
 										
 										<div class="control-group">
-											<label class="control-label" for="basicinput"><span class="red">*</span>姓名：</label>
+											<label class="control-label"><span class="red">*</span>姓名：</label>
 											<div class="controls">
-												<input class="span3" type="text" name="stuName" placeholder="填写姓名"/>
+												<input class="span4" type="text" id="txtStuName" name="stuName" placeholder="填写姓名，会自动搜索" autocomplete="off"/>
 											</div>
 										</div>
 
@@ -57,20 +74,22 @@
 										<div class="control-group">
 											<label class="control-label" for="basicinput">课程：</label>
 											<div class="controls">
-												<input class="span3" type="text" name="Course" placeholder="填写课程"/>
+												<input class="span4" type="text" name="Course" placeholder="填写课程"/>
 											</div>
 										</div>
 
 										<div class="control-group">
 											<label class="control-label" for="basicinput"><span class="red">*</span>成绩：</label>
 											<div class="controls">
-												<input class="span3" type="text" name="stuNo" placeholder="填写成绩"/>
+												<input class="span4" type="text" name="stuNo" placeholder="填写成绩"/>
 											</div>
 										</div>
 
 										<div class="control-group">
 											<div class="controls">
 												<input type="hidden" name="cmd" value="addscore"/>
+												<!-- 隐藏字段，用于保存学号 -->
+												<input type="hidden" id="hdStuNo" name="stuNo" value=""/>
 												<button type="submit" class="btn btn-small btn-info">保存</button>
 											</div>
 										</div>

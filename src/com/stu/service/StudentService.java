@@ -26,4 +26,11 @@ public interface StudentService {
 	 * @return
 	 */
 	PageBean<StudentBean> getStudents(StudentBean model,int currentPage,int pageCount);
+	
+	/**
+	 * 根据姓名查询学生信息【只选10个出来】
+	 * @param stuName 姓名
+	 * @return
+	 */
+	List getStudents(String stuName);
 }
