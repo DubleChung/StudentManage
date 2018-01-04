@@ -193,30 +193,42 @@ public class StudentServlet extends HttpServlet {
 		// 参数检查
 		// 空或空字符判断,不合法姓名
 		if (stuName == null || "".equals(stuName)) {
+			
+			//设置页面提示消息
 			request.setAttribute("msg", new MessageBean(0, "输入的姓名不合法，添加失败！"));
-			request.getRequestDispatcher("/views/add_student.jsp").forward(
-					request, response);
+			//请求回发
+			request.getRequestDispatcher("/views/add_student.jsp").forward(request, response);
+			
 			return;
 		}
 		// 空或字符判断,不合法学号
 		if (stuNo == null || "".equals(stuNo)) {
+			
+			//设置页面提示消息
 			request.setAttribute("msg", new MessageBean(0, "输入的学号不合法，添加失败！"));
-			request.getRequestDispatcher("/views/add_student.jsp").forward(
-					request, response);
+			//请求回发
+			request.getRequestDispatcher("/views/add_student.jsp").forward(request, response);
+			
 			return;
 		}
 		// 空或正则判断非数字,不合法年龄值
 		if (stuAge == null || Pattern.matches("[^\\d]*", stuAge)) {
+			
+			//设置页面提示消息
 			request.setAttribute("msg", new MessageBean(0, "输入的年龄不合法，添加失败！"));
-			request.getRequestDispatcher("/views/add_student.jsp").forward(
-					request, response);
+			//请求回发
+			request.getRequestDispatcher("/views/add_student.jsp").forward(request, response);
+			
 			return;
 		}
 		// 空或空字符判断,不合法性别
 		if (stuSex == null || "".equals(stuSex)) {
+			
+			//设置页面提示消息
 			request.setAttribute("msg", new MessageBean(0, "输入的性别不合法，添加失败！"));
-			request.getRequestDispatcher("/views/add_student.jsp").forward(
-					request, response);
+			//请求回发
+			request.getRequestDispatcher("/views/add_student.jsp").forward(request, response);
+			
 			return;
 		}
 
@@ -235,13 +247,14 @@ public class StudentServlet extends HttpServlet {
 		StudentDao stuDao = new StudentDao();
 		// 执行数据库添加
 		boolean result = stuDao.addStudent(studentBean);
-		// 根据数据库返回结果，组装消息
+		
+		// 根据数据库返回结果设置页面提示消息
 		if (result == true) {
 			request.setAttribute("msg", new MessageBean(1, "添加成功！"));
 		} else {
 			request.setAttribute("msg", new MessageBean(0, "添加失败！"));
 		}
-		// 执行页面跳转
+		// 请求回发
 		request.getRequestDispatcher("/views/add_student.jsp").forward(request,response);
 	}
 

@@ -1,6 +1,8 @@
 package com.stu.servlet;
 
 import java.io.IOException;
+import java.util.regex.Pattern;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -152,7 +154,15 @@ public class ScoreServlet extends HttpServlet {
 		// 课程
 		String course = (request.getParameter("Course") != null ? request.getParameter("Course") : "");
 		// 成绩
-		float score = Float.parseFloat(request.getParameter("Score") != null ? request.getParameter("Score") : "0");
+		String scoreStr = request.getParameter("Score") != null ? request.getParameter("Score") : "0";
+		if(!Pattern.matches("^\\d+(\\.\\d+)?$", scoreStr))//正则表达式检查是否是浮点值
+		{
+			request.setAttribute("msg", "请填写正确的成绩数值！");
+			// 请求回发
+			request.getRequestDispatcher("/views/add_student_score.jsp").forward(request, response);
+			return;
+		}
+		float score = Float.parseFloat(scoreStr);
 
 		// 添加学生
 		// 实例化学生数据库操作类

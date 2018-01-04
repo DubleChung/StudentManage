@@ -22,6 +22,8 @@
 			.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
 		</style>
 		<script type="text/javascript">
+			
+		
 			$(function(){
 				$('#txtStuName').autocomplete({
 				    serviceUrl: 'student?cmd=json_stulist&currentPage=1&stuName=' + $.trim($('#txtStuName').val()),//只用姓名条件
@@ -105,7 +107,7 @@
 								<b>添加成绩</b>
 							</div>
 							<div class="module-body">
-									<form action="student" class="form-horizontal row-fluid" method="post" onsubmit="return formCheck();">
+									<form action="score" class="form-horizontal row-fluid" method="post" onsubmit="return formCheck();">
 										
 										<div class="control-group">
 											<label class="control-label"><span class="red">*</span>姓名：</label>
@@ -150,9 +152,9 @@
         </div>
         <!--/.wrapper-->
         
-        <!-- 引入网页公共页脚 -->
+        <!-- 引入网页公共页脚页面 -->
         <jsp:include page="/views/footer.jsp"></jsp:include>
-        
+        <!-- 引入消息脚本页面 -->
         <jsp:include page="/views/message.jsp"></jsp:include>
 	</body>
 
