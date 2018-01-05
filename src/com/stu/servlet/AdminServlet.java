@@ -69,7 +69,7 @@ public class AdminServlet extends HttpServlet {
 			AdminBean loginBean = adminDao.adminLogin(adminBean);
 			if (loginBean != null && loginBean.getUid() > 0) {
 				// 登录验证成功，把用户信息写入到Session
-	            HttpSession hs = request.getSession(true);  
+				HttpSession hs = request.getSession(true);  
 	            hs.setMaxInactiveInterval(3600);//设置过期时间为3600秒（1个小时）
 	            hs.setAttribute("LoginUser",loginBean);//账号信息保存到Session
 	            
