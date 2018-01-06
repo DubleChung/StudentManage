@@ -1,0 +1,114 @@
+package com.stu.servlet;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.stu.core.Encrypt;
+import com.stu.dao.AdminDao;
+import com.stu.model.AdminBean;
+import com.stu.model.MessageBean;
+
+public class LoginServlet extends HttpServlet {
+
+	public LoginServlet() {
+		super();
+	}
+
+	/**
+	 * 处理POST请求
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doPost(request, response);
+	}
+
+	/**
+	 * 用户退出
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		// 设置响应内容类型
+		response.setContentType("text/html");
+
+		// 根据不同的cmd执行不同的操作
+		String cmd = request.getParameter("cmd");
+		
+		if ("login".equals(cmd)) {
+			//管理员用户登录
+			AdminLogin(request, response);
+		} else if("login_out".equals(cmd)) {
+			//用户退出
+            AdminLoginOut(request, response); 
+		}
+	}
+
+	/**
+	 * 管理用户登录
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void AdminLogin(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// 实例化管理员类，取出登录表单中的参数值，并赋值给相应的属性
+		AdminBean adminBean = new AdminBean();
+		adminBean.setUAccounts(request.getParameter("uAccounts"));
+		adminBean.setUPassword(Encrypt.encode(request.getParameter("uPassword")));
+
+		AdminDao adminDao = new AdminDao();
+		// 执行数据库查询验证
+		AdminBean loginBean = adminDao.adminLogin(adminBean);
+		if (loginBean != null && loginBean.getUid() > 0) {
+			
+			// 登录验证成功，把用户信息写入到Session
+			HttpSession session = request.getSession(true);  
+		    
+			//设置过期时间为3600秒（1个小时）
+			session.setMaxInactiveInterval(3600);
+		    
+			//账号信息保存到Session
+		    session.setAttribute("LoginUser",loginBean);
+		    
+		    //跳转到首页
+		    request.getRequestDispatcher("/views/index.jsp").forward(request, response); 
+		    
+		}else{
+			
+			//设置页面提示消息
+			request.setAttribute("ErrMsg", new MessageBean(0,"用户名或密码错误！"));
+			
+			//跳转到首页
+		    request.getRequestDispatcher("/views/login.jsp").forward(request, response); 
+		}
+	}
+
+	/**
+	 * 用户退出
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void AdminLoginOut(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().removeAttribute("LoginUser");
+		//跳转到首页
+		request.getRequestDispatcher("/views/login.jsp").forward(request, response);
+	}
+}
