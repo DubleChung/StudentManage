@@ -16,11 +16,27 @@
 		<!-- 引入公共网页头部 -->
 		<jsp:include page="/views/include_common.jsp"/>
 		<script type="text/javascript">
+		
+			//翻页
 			function pageClick(pageIndex){
-				window.location.href = '<%=basePath %>score?cmd=scorelist&currentPage=' + pageIndex 
+				window.location.href = 'score?cmd=scorelist&currentPage=' + pageIndex 
 										+ '&stuName=' + $.trim($('#txtStuName').val()) 
 										+ '&stuNo=' + $.trim($('#txtStuNo').val());
 			}
+			
+			//删除成绩
+			function deleteScore(_sid){
+				var param = { cmd : 'deletescore' , sid : _sid };
+				$.post('score',param,function(data){
+					if(data && data.msg){
+						alert(data.msg);
+						if(data.code == 1){
+							window.location.reload();//重新加载当前页面
+						}
+					}
+				},'json');
+			}
+			
 		</script>
 	</head>
 
@@ -77,7 +93,7 @@
 											        <td>${li.stuNo}</td>
 											        <td>${li.course}</td>
 											        <td>${li.score}</td>
-											        <td><a href="javascript:void(0)">删除</a></td>
+											        <td><a href="javascript:deleteScore(${li.sid})">删除</a></td>
 							                      </tr>
 							                  </c:forEach>
 						          </tbody>

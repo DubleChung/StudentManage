@@ -1,6 +1,7 @@
 package com.stu.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
@@ -52,19 +53,31 @@ public class ScoreServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// 设置响应内容类型
-		response.setContentType("text/html;charset=gbk");
-
 		String cmd = request.getParameter("cmd");
 		if ("addscore".equals(cmd)) {
+
+			// 设置响应内容类型
+			response.setContentType("text/html");
+			
 			// 添加学生成绩
 			AddStudentScore(request, response);
+			
 		} else if ("scorelist".equals(cmd)) {
+
+			// 设置响应内容类型
+			response.setContentType("text/html");
+			
 			// 查询学生成绩
 			QueryStudentScore(request, response);
+			
 		} else if ("deletescore".equals(cmd)) {
+
+			// 设置响应内容类型
+	        response.setContentType("application/json");
+			
 			// 删除学生成绩
 			DeleteStudentScore(request, response);
+			
 		}
 	}
 
@@ -77,7 +90,7 @@ public class ScoreServlet extends HttpServlet {
 	private void DeleteStudentScore(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// 成绩标识ID
-		int sid = Integer.parseInt(request.getParameter("Score") != null ? request.getParameter("Score") : "0");
+		int sid = Integer.parseInt(request.getParameter("sid") != null ? request.getParameter("sid") : "0");
 
 		// 添加学生
 		// 实例化学生数据库操作类
@@ -85,16 +98,20 @@ public class ScoreServlet extends HttpServlet {
 
 		// 执行数据删除
 		boolean result = scoreDao.deleteStudentScore(sid);
-
-		// 根据数据库返回结果，组装消息
-		if (result == true) {
-			request.setAttribute("msg", new MessageBean(1, "删除成功！"));
-		} else {
-			request.setAttribute("msg", new MessageBean(0, "删除失败！"));
+	
+		//json 数据字符串
+		StringBuffer sb = new StringBuffer();
+		if(result == true){
+			sb.append("{\"code\":1,\"msg\":\"删除成功！\"}");
+		}else {
+			sb.append("{\"code\":0,\"msg\":\"删除失败！\"}");
 		}
-
-		// 请求回发
-		request.getRequestDispatcher("/views/search_student_score.jsp").forward(request, response);
+		
+        //返回json
+        PrintWriter out = response.getWriter();
+        out.write(sb.toString());
+        out.flush();
+        out.close();
 	}
 
 	/**

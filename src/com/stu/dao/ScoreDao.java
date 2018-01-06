@@ -180,7 +180,7 @@ public class ScoreDao implements ScoreService {
 		ArrayList params = new ArrayList();
 
 		// 拼接SQL语句
-		String sql = "delete t_score where sid = ? ";
+		String sql = "delete from t_score where sid = ? ";
 
 		// 学号查询条件
 		params.add(sid);
