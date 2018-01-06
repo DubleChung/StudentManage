@@ -26,7 +26,7 @@ public class ScoreDao implements ScoreService {
 		}
 
 		// ´ıÖ´ĞĞSQLÓï¾ä
-		String sql = "insert into t_student(`stuno`,`course`,`score`) values(?,?,?)";
+		String sql = "insert into t_student(`stuNo`,`course`,`score`) values(?,?,?)";
 
 		// SQLÓï¾ä²ÎÊı
 		Object[] params = { stuNo, course, score };

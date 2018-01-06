@@ -27,10 +27,10 @@
 			$(function(){
 				$('#txtStuName').autocomplete({
 				    serviceUrl: 'student?cmd=json_stulist&currentPage=1&stuName=' + $.trim($('#txtStuName').val()),//只用姓名条件
-				    onSelect: function (data) {
+				    onSelect: function (selData) {
 				    	if(window.console && window.console.log)
-				    		console.log(data);
-				    	$('#hdStuNo').val(data.val);
+				    		console.log(selData);
+				    	$('#hdStuNo').val(selData.data);
        				}
 				});
 			});

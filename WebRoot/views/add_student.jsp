@@ -168,7 +168,7 @@
         
         <!-- 引入网页公共页脚 -->
         <jsp:include page="/views/footer.jsp"></jsp:include>
-        
+        <!-- 引入消息脚本页面 -->
         <jsp:include page="/views/message.jsp"></jsp:include>
 	</body>
 

@@ -157,7 +157,8 @@ public class ScoreServlet extends HttpServlet {
 		String scoreStr = request.getParameter("Score") != null ? request.getParameter("Score") : "0";
 		if(!Pattern.matches("^\\d+(\\.\\d+)?$", scoreStr))//正则表达式检查是否是浮点值
 		{
-			request.setAttribute("msg", "请填写正确的成绩数值！");
+			//设置页面提示消息
+			request.setAttribute("msg", new MessageBean(0,"请填写正确的成绩数值！"));
 			// 请求回发
 			request.getRequestDispatcher("/views/add_student_score.jsp").forward(request, response);
 			return;
@@ -171,7 +172,7 @@ public class ScoreServlet extends HttpServlet {
 		// 执行数据库添加
 		boolean result = scoreDao.addStudentScore(stuNo, course, score);
 
-		// 根据数据库返回结果，组装消息
+		// 根据数据库返回结果，设置页面提示消息
 		if (result == true) {
 			request.setAttribute("msg", new MessageBean(1, "添加成功！"));
 		} else {

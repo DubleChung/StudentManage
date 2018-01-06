@@ -1,41 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
- <servlet>
-  <description>This is the description of my J2EE component</description>
-  <display-name>This is the display name of my J2EE component</display-name>
-  <servlet-name>AdminServlet</servlet-name>
-  <servlet-class>com.stu.servlet.AdminServlet</servlet-class>
- </servlet>
- <servlet>
-  <description>This is the description of my J2EE component</description>
-  <display-name>This is the display name of my J2EE component</display-name>
-  <servlet-name>StudentServlet</servlet-name>
-  <servlet-class>com.stu.servlet.StudentServlet</servlet-class>
- </servlet>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee   http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<filter>
+		<display-name>WebFilter</display-name>
+		<filter-name>WebFilter</filter-name>
+		<filter-class>com.stu.filter.WebFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>gbk</param-value>
+		</init-param>
+		<init-param>
+			<param-name>excludedPages</param-name>
+			<param-value>/views/login.jsp</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>WebFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>AdminServlet</servlet-name>
+		<servlet-class>com.stu.servlet.AdminServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>StudentServlet</servlet-name>
+		<servlet-class>com.stu.servlet.StudentServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>ScoreServlet</servlet-name>
+		<servlet-class>com.stu.servlet.ScoreServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<servlet-name>Test</servlet-name>
+		<servlet-class>com.stu.servlet.Test</servlet-class>
+	</servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>ScoreServlet</servlet-name>
-    <servlet-class>com.stu.servlet.ScoreServlet</servlet-class>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.stu.servlet.LoginServlet</servlet-class>
   </servlet>
 
- <servlet-mapping>
-  <servlet-name>AdminServlet</servlet-name>
-  <url-pattern>/admin</url-pattern>
- </servlet-mapping>
- <servlet-mapping>
-  <servlet-name>StudentServlet</servlet-name>
-  <url-pattern>/student</url-pattern>
- </servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>AdminServlet</servlet-name>
+		<url-pattern>/admin</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>StudentServlet</servlet-name>
+		<url-pattern>/student</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ScoreServlet</servlet-name>
+		<url-pattern>/score</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Test</servlet-name>
+		<url-pattern>/test</url-pattern>
+	</servlet-mapping>
   <servlet-mapping>
-    <servlet-name>ScoreServlet</servlet-name>
-    <url-pattern>/score</url-pattern>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/login</url-pattern>
   </servlet-mapping>
- <welcome-file-list>
-  <welcome-file>/views/login.jsp</welcome-file>
- </welcome-file-list>
- <login-config>
-  <auth-method>BASIC</auth-method>
- </login-config>
+	<welcome-file-list>
+		<welcome-file>/views/login.jsp</welcome-file>
+	</welcome-file-list>
+	<login-config>
+		<auth-method>BASIC</auth-method>
+	</login-config>
 </web-app>
