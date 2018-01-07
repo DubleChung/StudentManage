@@ -30,6 +30,6 @@ public interface AdminService {
 	 * @param newPassword
 	 * @return
 	 */
-	boolean changePassword(AdminBean model, String newPassword);
+	boolean changePassword(int uid,String uPassword, String newUPassword);
 
 }

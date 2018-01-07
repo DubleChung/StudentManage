@@ -9,8 +9,9 @@ import com.stu.service.AdminService;
 
 /**
  * 管理员数据库操作类
+ * 
  * @author Administrator
- *
+ * 
  */
 public class AdminDao implements AdminService {
 
@@ -33,13 +34,11 @@ public class AdminDao implements AdminService {
 			// 获取结果集
 			ResultSet rs = db.getRs();
 
-			if (rs != null) 
-			{
+			if (rs != null) {
 				// 实例化管理员
 				returnModel = new AdminBean();
-				
-				while(rs.next())
-				{
+
+				while (rs.next()) {
 					// 从结果集中读取，并设置管理员实体数据
 					returnModel.setUid(rs.getInt("uid"));// 设置管理员标识ID
 					returnModel.setUName(rs.getString("uName"));// 设置管理员姓名
@@ -48,24 +47,44 @@ public class AdminDao implements AdminService {
 			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
-		}
-		finally
-		{
+		} finally {
 			db.close();
 		}
-		
+
 		return returnModel;
 	}
-	
+
 	public boolean addAdmin(AdminBean model) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public boolean changePassword(AdminBean model, String newPassword) {
-		// TODO Auto-generated method stub
+	/**
+	 * 修改密码
+	 */
+	public boolean changePassword(int uid, String uPassword,
+			String newUPassword) {
+		
+		//待执行SQL
+		String sql = "update t_admin set uPassword = ? where uid = ? and uPassword = ?";
+		
+		//SQL参数
+		Object[] params = { newUPassword, uid, uPassword };
+
+		try {
+			
+			//执行数据库更新
+			db.doPstm(sql, params);
+			
+			//获取影响行数
+			int rowCount = db.getCount();
+			
+			return (rowCount > 0);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return false;
 	}
-
 
 }

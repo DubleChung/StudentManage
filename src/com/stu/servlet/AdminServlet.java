@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.mysql.jdbc.StringUtils;
 import com.stu.core.Encrypt;
 import com.stu.dao.AdminDao;
 import com.stu.model.AdminBean;
@@ -67,26 +68,49 @@ public class AdminServlet extends HttpServlet {
 	 */
 	private void AdminPwdChange(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// 实例化管理员类，取出登录表单中的参数值，并赋值给相应的属性
-		AdminBean adminBean = new AdminBean();
-		adminBean.setUName(request.getParameter("uName"));//姓名
-		adminBean.setUAccounts(request.getParameter("uAccounts"));//账号
-		adminBean.setUPassword(request.getParameter("uPassword"));//密码
-		adminBean.setURemark(request.getParameter("uRemark"));//备注
+
+		//新密码
+		String newPwd = request.getParameter("newUPassword");
+		String reNewPwd = request.getParameter("reNewUPassword");
+		//获取原密码
+		String uPwd = request.getParameter("uPassword");
 		
-		AdminDao adminDao = new AdminDao();
+		//检查密码是否为空值 
+		if(newPwd.isEmpty() || reNewPwd.isEmpty())
+		{
+			//设置页面提示消息
+			request.setAttribute("msg", new MessageBean(0,"新密码不能为空！"));
+			//跳转页面
+			request.getRequestDispatcher("/views/changpwd.jsp").forward(request, response);
+			return;
+		}
+		
+		//检查两次输入的密码是否一致
+		if(!newPwd.equals(reNewPwd))
+		{
+			//设置页面提示消息
+			request.setAttribute("msg", new MessageBean(0,"两输入的密码不一致！"));
+			//跳转页面
+			request.getRequestDispatcher("/views/changpwd.jsp").forward(request, response);
+			return;
+		}
+		
+		//获取登录信息
+		AdminBean loginUser = (AdminBean)request.getSession().getAttribute("LoginUser");
+		
 		//执行数据库更新操作
-		boolean result = adminDao.addAdmin(adminBean);
+		AdminDao adminDao = new AdminDao();
+		boolean result = adminDao.changePassword(loginUser.getUid(),Encrypt.encode(uPwd),Encrypt.encode(newPwd));
 		
 		//判断数据执行结果，并设置相应的页面提示消息
 		if(result == true) {
 			request.setAttribute("msg", new MessageBean(1,"修改成功！"));
-		}else{
+		} else {
 			request.setAttribute("msg", new MessageBean(0,"修改失败！"));
 		}
 		
 		//跳转页面
-		request.getRequestDispatcher("/views/changepwd.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/changpwd.jsp").forward(request, response);
 	}
 
 

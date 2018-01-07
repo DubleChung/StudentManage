@@ -101,11 +101,11 @@
 											<label class="control-label"><span class="red">*</span>性别：</label>
 											<div class="controls">
 												<label class="radio inline">
-													<input type="radio" name="stuSex" value="1" checked="checked" />
+													<input type="radio" name="stuSex" value="男" checked="checked" />
 													男
 												</label> 
 												<label class="radio inline">
-													<input type="radio" name="stuSex" value="0" />
+													<input type="radio" name="stuSex" value="女" />
 													女
 												</label>
 											</div>

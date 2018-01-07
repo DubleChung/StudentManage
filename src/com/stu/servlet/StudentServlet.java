@@ -56,17 +56,17 @@ public class StudentServlet extends HttpServlet {
 		String cmd = request.getParameter("cmd");
 		if ("add".equals(cmd)) {
 			// 设置响应内容类型
-			response.setContentType("text/html;charset=gbk");
+			response.setContentType("text/html");
 			// 添加学生信息
 			AddStudent(request, response);
 		} else if ("stulist".equals(cmd)) {
 			// 设置响应内容类型
-			response.setContentType("text/html;charset=gbk");
+			response.setContentType("text/html");
 			// 查询学生信息
 			QueryStudents(request, response);
 		} else if("json_stulist".equals(cmd)) {
 			// 设置响应内容类型
-	        response.setContentType("application/json;charset=gbk");
+	        response.setContentType("application/json");
 			//根据姓名查询学生信息
 			QueryStudentToJson(request,response);
 		}
@@ -234,13 +234,13 @@ public class StudentServlet extends HttpServlet {
 
 		// 实例化学生信息类,并从请求中获取对应参数值
 		StudentBean studentBean = new StudentBean();
-		studentBean.setStuName(StringUtils.toChinese(stuName));// 姓名,转换了参数的编码为GBK，不转会是乱码。
+		studentBean.setStuName(stuName);// 姓名,转换了参数的编码为GBK，不转会是乱码。
 		studentBean.setStuNo(stuNo);// 学号
-		studentBean.setCno(StringUtils.toChinese(cno));// 班级编号,转换了参数的编码为GBK，不转会是乱码。
-		studentBean.setGno(StringUtils.toChinese(gno));// 年级编号,转换了参数的编码为GBK，不转会是乱码。
+		studentBean.setCno(cno);// 班级编号,转换了参数的编码为GBK，不转会是乱码。
+		studentBean.setGno(gno);// 年级编号,转换了参数的编码为GBK，不转会是乱码。
 		studentBean.setStuAge(Integer.parseInt(stuAge));// 年龄
-		studentBean.setStuAddr(StringUtils.toChinese(stuAddr));// 住址,转换了参数的编码为GBK，不转会是乱码。
-		studentBean.setStuSex(StringUtils.toChinese(stuSex));// 性别,转换了参数的编码为GBK，不转会是乱码。
+		studentBean.setStuAddr(stuAddr);// 住址,转换了参数的编码为GBK，不转会是乱码。
+		studentBean.setStuSex(stuSex);// 性别,转换了参数的编码为GBK，不转会是乱码。
 
 		// 添加学生
 		// 实例化学生数据库操作类

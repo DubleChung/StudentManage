@@ -79,16 +79,16 @@
 										</div>
 										
 										<div class="control-group">
-											<label class="control-label" for="basicinput">新密码：</label>
+											<label class="control-label" for="basicinput"><span class="red">*</span>新密码：</label>
 											<div class="controls">
-												<input class="span3" type="text" id="txtNewUPassword" name="newUPassword" maxlength="2" placeholder="填写新密码"/>
+												<input class="span3" type="text" id="txtNewUPassword" name="newUPassword" placeholder="填写新密码"/>
 											</div>
 										</div>
 										
 										<div class="control-group">
-											<label class="control-label" for="basicinput">确认新密码：</label>
+											<label class="control-label" for="basicinput"><span class="red">*</span>确认新密码：</label>
 											<div class="controls">
-												<input class="span3" type="text" id="txtReNewUPassword" name="newUPassword" maxlength="2" placeholder="填写确认新密码"/>
+												<input class="span3" type="text" id="txtReNewUPassword" name="reNewUPassword" placeholder="填写确认新密码"/>
 											</div>
 										</div>
 

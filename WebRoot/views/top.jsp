@@ -13,7 +13,7 @@
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
                 <i class="icon-reorder shaded"></i>
             </a>
-            <a class="brand" href="index.html">学生成绩管理系统</a>
+            <a class="brand" href="views/index.jsp">学生成绩管理系统</a>
             <div class="nav-collapse collapse navbar-inverse-collapse">
                 <ul class="nav pull-right">
                     <li><a href="views/index.jsp"><i class="menu-icon icon-home"></i>后台首页</a></li>
@@ -23,7 +23,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="views/changpwd.jsp"><i class="menu-icon icon-edit"></i>修改密码</a></li>
                             <li class="divider"></li>
-                            <li><a href="/admin?cmd=login_out"><i class="menu-icon icon-signout"></i>退出</a></li>
+                            <li><a href="login?cmd=login_out"><i class="menu-icon icon-signout"></i>退出</a></li>
                         </ul>
                     </li>
                 </ul>

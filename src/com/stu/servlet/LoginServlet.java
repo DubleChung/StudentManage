@@ -91,7 +91,7 @@ public class LoginServlet extends HttpServlet {
 		}else{
 			
 			//设置页面提示消息
-			request.setAttribute("ErrMsg", new MessageBean(0,"用户名或密码错误！"));
+			request.setAttribute("msg", new MessageBean(0,"用户名或密码错误！"));
 			
 			//跳转到首页
 		    request.getRequestDispatcher("/views/login.jsp").forward(request, response); 
