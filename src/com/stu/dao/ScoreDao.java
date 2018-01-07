@@ -81,7 +81,7 @@ public class ScoreDao implements ScoreService {
 		}
 
 		// 分页参数
-		sql += " limit ?,? ";
+		sql += " order by tb1.score desc limit ?,? ";
 		params.add((currentPage - 1) * pageSize);// 设置取数据索引
 		params.add(pageSize);// 页大小
 
