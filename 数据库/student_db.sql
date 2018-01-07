@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: student_db
 Target Host: localhost
 Target Database: student_db
-Date: 2018/1/6 23:10:32
+Date: 2018/1/7 12:00:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -52,10 +52,21 @@ CREATE TABLE `t_student` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `t_admin` VALUES ('1', '张三', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '测试');
-INSERT INTO `t_score` VALUES ('1', '111', '语文', '100');
-INSERT INTO `t_score` VALUES ('2', '111', '数学', '110');
-INSERT INTO `t_score` VALUES ('3', '111', '英语', '100');
+INSERT INTO `t_admin` VALUES ('1', '张三', 'admin', 'E10ADC3949BA59ABBE56E057F20F883E', '测试');
+INSERT INTO `t_score` VALUES ('13', '433', 'dd', '33');
+INSERT INTO `t_score` VALUES ('14', '2323', 'sada', '66');
+INSERT INTO `t_score` VALUES ('15', '324', 'fd', '77');
+INSERT INTO `t_score` VALUES ('16', '2323', 'fd', '43');
+INSERT INTO `t_score` VALUES ('17', '2323', 'lfd', '99');
+INSERT INTO `t_score` VALUES ('18', '3241', 'w43', '66');
+INSERT INTO `t_score` VALUES ('19', '2323', 'klsdwe', '88');
+INSERT INTO `t_score` VALUES ('20', '222', '可困', '121');
+INSERT INTO `t_score` VALUES ('21', '222', '顾', '21');
+INSERT INTO `t_score` VALUES ('22', '222', '夺', '133');
+INSERT INTO `t_score` VALUES ('23', '3241', 'sdf', '123');
+INSERT INTO `t_score` VALUES ('24', '3241', 'sdkj', '123');
+INSERT INTO `t_score` VALUES ('25', '433', 'qwkj', '123');
+INSERT INTO `t_score` VALUES ('26', '222', '顺口在', '123');
 INSERT INTO `t_student` VALUES ('1', '耙耳朵', '111', '123', 'd', '1', 'a', '1');
 INSERT INTO `t_student` VALUES ('2', '张三', '222', '124', '22', '23', '22222222111', '1');
 INSERT INTO `t_student` VALUES ('3', '风车车', '333', '125', '11', '22', '1312312313', '1');
@@ -67,3 +78,6 @@ INSERT INTO `t_student` VALUES ('8', 'fdd', '3241', '123', '1234', '23', '4', '1
 INSERT INTO `t_student` VALUES ('9', 'qww', '23', '234', '243', '44', '24', '1');
 INSERT INTO `t_student` VALUES ('10', '323445', '2323', '22323', '3223', '23', '23', '1');
 INSERT INTO `t_student` VALUES ('11', '345', '324', '32', '2234', '31', '2345', '1');
+INSERT INTO `t_student` VALUES ('12', '呵呵', 'jslkl2', '233', '232323', '22', '', '1');
+INSERT INTO `t_student` VALUES ('13', '爱国人士', '2345', '234', '23', '22', '呀劳动用工脸上', '1');
+INSERT INTO `t_student` VALUES ('14', '炒作', '234', '5667', '2345', '33', '222这信用报告&#13361;信用报告', '男');
