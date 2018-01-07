@@ -150,6 +150,14 @@ public class StudentServlet extends HttpServlet {
 		//取出查询参数,如果没有提交查询参数,则值为空字符串
 		String stuName = (request.getParameter("stuName") != null ? request.getParameter("stuName") : "");
 		String stuNo = (request.getParameter("stuNo") != null ? request.getParameter("stuNo") : "");
+		
+		if(!stuName.isEmpty()){
+			stuName = StringUtils.toChinese(stuName);
+		}
+		if(!stuNo.isEmpty()){
+			stuNo = StringUtils.toChinese(stuNo);
+		}
+		
 		// 初始化查询参数类
 		StudentBean studentBean = new StudentBean();
 		studentBean.setStuName(stuName);// 姓名
