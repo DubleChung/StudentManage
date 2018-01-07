@@ -26,15 +26,17 @@
 			
 			//删除成绩
 			function deleteScore(_sid){
-				var param = { cmd : 'deletescore' , sid : _sid };
-				$.post('score',param,function(data){
-					if(data && data.msg){
-						alert(data.msg);
-						if(data.code == 1){
-							window.location.reload();//重新加载当前页面
+				if(confirm('确认删除成绩信息吗？')){
+					var param = { cmd : 'deletescore' , sid : _sid };
+					$.post('score',param,function(data){
+						if(data && data.msg){
+							alert(data.msg);
+							if(data.code == 1){
+								window.location.reload();//重新加载当前页面
+							}
 						}
-					}
-				},'json');
+					},'json');
+				}
 			}
 			
 		</script>
@@ -65,9 +67,9 @@
 										<div class="control-group" style="height:35px;">
 											<input type="hidden" name="cmd" value="scorelist"/>
 											<label class="control-label" style="width:65px;"><span class="red">*</span>姓名：</label>
-											<input class="span3" style="float:left;" type="text" id="txtStuName" name="stuName" value="${requestScope.stuName}" placeholder="填写姓名"/>
+											<input class="span3" style="float:left;" type="text" id="txtStuName" name="stuName" value="${requestScope.stuName}" placeholder="填写姓名" autocomplete="off"/>
 											<label class="control-label"  style="width:65px;"><span class="red">*</span>学号：</label>
-											<input class="span3" style="float:left;" type="text" id="txtStuNo" name="stuNo" value="${requestScope.stuNo}" placeholder="填写学号"/>
+											<input class="span3" style="float:left;" type="text" id="txtStuNo" name="stuNo" value="${requestScope.stuNo}" placeholder="填写学号" autocomplete="off"/>
 											<button type="submit" class="btn btn-small btn-info icon-search" style="height:auto;margin-left:10px;">查询</button>
 										</div>
 									</form>
@@ -85,21 +87,20 @@
 									</thead>
 									<!-- 迭代数据 -->
 									<tbody>
-							         
-							                  <c:forEach var="li" items="${requestScope.pageBean.pageData}">
-							                      <tr>
-											        <td>${li.sid}</td>
-											        <td>${li.stuName}</td>
-											        <td>${li.stuNo}</td>
-											        <td>${li.course}</td>
-											        <td>${li.score}</td>
-											        <td><a href="javascript:deleteScore(${li.sid})">删除</a></td>
-							                      </tr>
-							                  </c:forEach>
+						                  <c:forEach var="li" items="${requestScope.pageBean.pageData}">
+						                      <tr>
+										        <td>${li.sid}</td>
+										        <td>${li.stuName}</td>
+										        <td>${li.stuNo}</td>
+										        <td>${li.course}</td>
+										        <td>${li.score}</td>
+										        <td><a href="javascript:deleteScore(${li.sid})">删除</a></td>
+						                      </tr>
+						                  </c:forEach>
 						          </tbody>
 						          <tfoot>
 							          <tr>
-							              <td colspan="8" align="center">
+							              <td colspan="6" align="center">
 							              		每页${requestScope.pageBean.pageSize}条 , 当前${requestScope.pageBean.currentPage}
 							                  /${requestScope.pageBean.totalPage}
 							                  	页     &nbsp;&nbsp;

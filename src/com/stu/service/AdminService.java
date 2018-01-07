@@ -15,13 +15,6 @@ public interface AdminService {
 	 * @return
 	 */
 	AdminBean adminLogin(AdminBean model);
-	
-	/**
-	 * 添加管理员
-	 * @param model
-	 * @return
-	 */
-	boolean addAdmin(AdminBean model);
 
 	/**
 	 * 修改管理员密码

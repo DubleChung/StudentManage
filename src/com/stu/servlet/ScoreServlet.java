@@ -92,7 +92,6 @@ public class ScoreServlet extends HttpServlet {
 		// 成绩标识ID
 		int sid = Integer.parseInt(request.getParameter("sid") != null ? request.getParameter("sid") : "0");
 
-		// 添加学生
 		// 实例化学生数据库操作类
 		ScoreDao scoreDao = new ScoreDao();
 

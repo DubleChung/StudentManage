@@ -41,10 +41,8 @@
 				<div style="color: white"></div>
 				<form action="login" method="post">
 					<input type="hidden" name="cmd" value="login" />
-					<input type="text" id="username" name="uAccounts"
-						placeholder="请输入用户名">
-					<input type="password" id="password" name="uPassword"
-						placeholder="请输入密码">
+					<input type="text" id="username" name="uAccounts" placeholder="请输入用户名" autocomplete="off">
+					<input type="password" id="password" name="uPassword" placeholder="请输入密码" autocomplete="off">
 					<div class="signin">
 						<input class="submit" id="login" type="submit" value="登陆" />
 					</div>

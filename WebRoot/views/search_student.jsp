@@ -17,10 +17,27 @@
 		<jsp:include page="/views/include_common.jsp"/>
 		<script type="text/javascript">
 			function pageClick(pageIndex){
-				window.location.href = '<%=basePath %>student?cmd=stulist&currentPage=' + pageIndex 
+				window.location.href = 'student?cmd=stulist&currentPage=' + pageIndex 
 										+ '&stuName=' + $.trim($('txtStuName').val()) 
 										+ '&stuNo=' + $.trim($('txtStuNo').val());
 			}
+			
+			
+			//删除学生信息
+			function deleteStudent(_stuid){
+				if(confirm('确认删除学生信息吗？删除学生信息会同时删除成绩信息。')){
+					var param = { cmd : 'deletestudent' , stuid : _stuid };
+					$.post('student',param,function(data){
+						if(data && data.msg){
+							alert(data.msg);
+							if(data.code == 1){
+								window.location.reload();//重新加载当前页面
+							}
+						}
+					},'json');
+				}
+			}
+			
 		</script>
 	</head>
 
@@ -49,9 +66,9 @@
 										<div class="control-group" style="height:35px;">
 											<input type="hidden" name="cmd" value="stulist"/>
 											<label class="control-label" style="width:65px;"><span class="red">*</span>姓名：</label>
-											<input class="span3" style="float:left;" type="text" id="txtStuName" name="stuName" value="${requestScope.stuName}" placeholder="填写姓名"/>
+											<input class="span3" style="float:left;" type="text" id="txtStuName" name="stuName" value="${requestScope.stuName}" placeholder="填写姓名" autocomplete="off"/>
 											<label class="control-label"  style="width:65px;"><span class="red">*</span>学号：</label>
-											<input class="span3" style="float:left;" type="text" id="txtStuNo" name="stuNo" value="${requestScope.stuNo}" placeholder="填写学号"/>
+											<input class="span3" style="float:left;" type="text" id="txtStuNo" name="stuNo" value="${requestScope.stuNo}" placeholder="填写学号" autocomplete="off"/>
 											<button type="submit left" class="btn btn-small btn-info icon-search" style="height:auto;margin-left:10px;">查询</button>
 										</div>
 									</form>
@@ -67,11 +84,13 @@
 											<th>年龄</th>
 											<th>住址</th>
 											<th>性别</th>
+											<th>操作</th>
 										</tr>
 									</thead>
-									<%--<tbody>
-										<c:forEach items="${requestScope.stuList}"  var="li" >
-											<tr>
+									<!-- 迭代数据 -->
+									<tbody>
+						                  <c:forEach var="li" items="${requestScope.pageBean.pageData}">
+						                      <tr>
 										        <td>${li.stuid}</td>
 										        <td>${li.stuName}</td>
 										        <td>${li.stuNo}</td>
@@ -80,29 +99,13 @@
 										        <td>${li.stuAge}</td>
 										        <td>${li.stuAddr}</td>
 										        <td>${li.stuSex}</td>
-										    </tr>
-										</c:forEach>
-									</tbody>
-									--%>
-									<!-- 迭代数据 -->
-									<tbody>
-							         
-							                  <c:forEach var="li" items="${requestScope.pageBean.pageData}">
-							                      <tr>
-											        <td>${li.stuid}</td>
-											        <td>${li.stuName}</td>
-											        <td>${li.stuNo}</td>
-											        <td>${li.cno}</td>
-											        <td>${li.gno}</td>
-											        <td>${li.stuAge}</td>
-											        <td>${li.stuAddr}</td>
-											        <td>${li.stuSex}</td>
-							                      </tr>
-							                  </c:forEach>
+										        <td><a href="javascript:deleteStudent(${li.stuid});">删除</a></td>
+						                      </tr>
+						                  </c:forEach>
 						          </tbody>
 						          <tfoot>
 							          <tr>
-							              <td colspan="8" align="center">
+							              <td colspan="9" align="center">
 							              		每页${requestScope.pageBean.pageSize}条 , 当前${requestScope.pageBean.currentPage}
 							                  /${requestScope.pageBean.totalPage}
 							                  	页     &nbsp;&nbsp;

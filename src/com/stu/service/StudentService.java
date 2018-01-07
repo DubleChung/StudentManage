@@ -33,4 +33,18 @@ public interface StudentService {
 	 * @return
 	 */
 	List getStudents(String stuName);
+	
+	/**
+	 * 删除学生信息
+	 * @param stuid
+	 * @return
+	 */
+	boolean deleteStudent(int stuid);
+	
+	/**
+	 * 检查学号是否存在
+	 * @param stuNo
+	 * @return
+	 */
+	boolean checkExists(String stuNo);
 }

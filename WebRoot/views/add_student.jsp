@@ -93,7 +93,7 @@
 										<div class="control-group">
 											<label class="control-label" for="basicinput"><span class="red">*</span>姓名：</label>
 											<div class="controls">
-												<input class="span3" type="text" id="txtStuName" name="stuName" placeholder="填写姓名"/>
+												<input class="span3" type="text" id="txtStuName" name="stuName" placeholder="填写姓名" autocomplete="off"/>
 											</div>
 										</div>
 
@@ -114,35 +114,35 @@
 										<div class="control-group">
 											<label class="control-label" for="basicinput">年龄：</label>
 											<div class="controls">
-												<input class="span3" type="text" id="txtStuAge" name="stuAge" maxlength="2" placeholder="填写年龄"/>
+												<input class="span3" type="text" id="txtStuAge" name="stuAge" maxlength="2" placeholder="填写年龄" autocomplete="off"/>
 											</div>
 										</div>
 
 										<div class="control-group">
 											<label class="control-label" for="basicinput"><span class="red">*</span>学号：</label>
 											<div class="controls">
-												<input class="span3" type="text" id="txtStuNo" name="stuNo" placeholder="填写学号"/>
+												<input class="span3" type="text" id="txtStuNo" name="stuNo" placeholder="填写学号" autocomplete="off"/>
 											</div>
 										</div>
 
 										<div class="control-group">
 											<label class="control-label" for="basicinput"><span class="red">*</span>班级：</label>
 											<div class="controls">
-												<input class="span3" type="text" id="txtCno" name="cno" placeholder="选择班级"/>
+												<input class="span3" type="text" id="txtCno" name="cno" placeholder="选择班级" autocomplete="off"/>
 											</div>
 										</div>
 										
 										<div class="control-group">
 											<label class="control-label" for="basicinput"><span class="red">*</span>年级：</label>
 											<div class="controls">
-												<input class="span3" type="text" id="txtGno" name="gno" placeholder="填写年级"/>
+												<input class="span3" type="text" id="txtGno" name="gno" placeholder="填写年级" autocomplete="off"/>
 											</div>
 										</div>
 										
 										<div class="control-group">
 											<label class="control-label" for="basicinput">住址：</label>
 											<div class="controls">
-												<input class="span8" type="text" id="txtStuAddr" name="stuAddr" placeholder="填写住址" />
+												<input class="span8" type="text" id="txtStuAddr" name="stuAddr" placeholder="填写住址" autocomplete="off"/>
 											</div>
 										</div>
 

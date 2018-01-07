@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.stu.core.StringUtils;
+import com.stu.dao.ScoreDao;
 import com.stu.dao.StudentDao;
 import com.stu.model.MessageBean;
 import com.stu.model.PageBean;
@@ -69,7 +70,49 @@ public class StudentServlet extends HttpServlet {
 	        response.setContentType("application/json");
 			//根据姓名查询学生信息
 			QueryStudentToJson(request,response);
+		} else if("deletestudent".equals(cmd)){
+			// 设置响应内容类型
+	        response.setContentType("application/json");
+			// 删除学生信息
+			DeleteStudent(request, response);
 		}
+	}
+	
+	/**
+	 * 删除学生信息
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void DeleteStudent(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// 学生标识ID
+		int stuid = Integer.parseInt(request.getParameter("stuid") != null ? request.getParameter("stuid") : "0");
+
+
+		//json 数据字符串
+		StringBuffer sb = new StringBuffer();
+
+		// 实例化学生数据库操作类
+		StudentDao studenteDao = new StudentDao();
+		ScoreDao scoreDao = new ScoreDao();
+		
+		// 执行数据删除
+		boolean result = studenteDao.deleteStudent(stuid);
+		
+		//判断学生删除结果
+		if(result == true){
+			sb.append("{\"code\":1,\"msg\":\"删除成功！\"}");
+		}else {
+			sb.append("{\"code\":0,\"msg\":\"删除失败！\"}");
+		}
+		
+        //返回json
+        PrintWriter out = response.getWriter();
+        out.write(sb.toString());
+        out.flush();
+        out.close();
 	}
 	
 	/**
@@ -249,18 +292,21 @@ public class StudentServlet extends HttpServlet {
 		studentBean.setStuAge(Integer.parseInt(stuAge));// 年龄
 		studentBean.setStuAddr(stuAddr);// 住址,转换了参数的编码为GBK，不转会是乱码。
 		studentBean.setStuSex(stuSex);// 性别,转换了参数的编码为GBK，不转会是乱码。
-
-		// 添加学生
-		// 实例化学生数据库操作类
-		StudentDao stuDao = new StudentDao();
-		// 执行数据库添加
-		boolean result = stuDao.addStudent(studentBean);
 		
-		// 根据数据库返回结果设置页面提示消息
-		if (result == true) {
-			request.setAttribute("msg", new MessageBean(1, "添加成功！"));
+		//检查学号是否有重复
+		boolean stuNoExists = new StudentDao().checkExists(stuNo);
+		if(stuNoExists == true){
+			request.setAttribute("msg", new MessageBean(1, "添加失败，学号重复！"));
 		} else {
-			request.setAttribute("msg", new MessageBean(0, "添加失败！"));
+			// 执行数据库添加
+			boolean result = new StudentDao().addStudent(studentBean);
+			
+			// 根据数据库返回结果设置页面提示消息
+			if (result == true) {
+				request.setAttribute("msg", new MessageBean(1, "添加成功！"));
+			} else {
+				request.setAttribute("msg", new MessageBean(0, "添加失败！"));
+			}
 		}
 		// 请求回发
 		request.getRequestDispatcher("/views/add_student.jsp").forward(request,response);

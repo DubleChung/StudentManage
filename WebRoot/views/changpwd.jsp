@@ -74,21 +74,21 @@
 										<div class="control-group">
 											<label class="control-label" for="basicinput"><span class="red">*</span>原密码：</label>
 											<div class="controls">
-												<input class="span3" type="text" id="txtUPassword" name="uPassword" placeholder="填写原密码"/>
+												<input class="span3" type="password" id="txtUPassword" name="uPassword" placeholder="填写原密码" autocomplete="off"/>
 											</div>
 										</div>
 										
 										<div class="control-group">
 											<label class="control-label" for="basicinput"><span class="red">*</span>新密码：</label>
 											<div class="controls">
-												<input class="span3" type="text" id="txtNewUPassword" name="newUPassword" placeholder="填写新密码"/>
+												<input class="span3" type="password" id="txtNewUPassword" name="newUPassword" placeholder="填写新密码" autocomplete="off"/>
 											</div>
 										</div>
 										
 										<div class="control-group">
 											<label class="control-label" for="basicinput"><span class="red">*</span>确认新密码：</label>
 											<div class="controls">
-												<input class="span3" type="text" id="txtReNewUPassword" name="reNewUPassword" placeholder="填写确认新密码"/>
+												<input class="span3" type="password" id="txtReNewUPassword" name="reNewUPassword" placeholder="填写确认新密码" autocomplete="off"/>
 											</div>
 										</div>
 

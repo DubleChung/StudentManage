@@ -41,9 +41,10 @@
 			
 				//检查姓名值 
 				var stuName = $.trim($('#txtStuName').val());
-				if(stuName.length < 1)
+				var stuNo = $.trim($('#hdStuNo').val());
+				if(stuName.length < 1 || stuNo.length < 1)
 				{
-					alert('姓名不能为空！');
+					alert('无该学生，如未添加请先添加学生信息，再添加成绩！');
 					return false;
 				}
 				
@@ -119,14 +120,14 @@
 										<div class="control-group">
 											<label class="control-label" for="basicinput">课程：</label>
 											<div class="controls">
-												<input class="span4" type="text" id="txtCourse" name="Course" placeholder="填写课程"/>
+												<input class="span4" type="text" id="txtCourse" name="Course" placeholder="填写课程" autocomplete="off"/>
 											</div>
 										</div>
 
 										<div class="control-group">
 											<label class="control-label" for="basicinput"><span class="red">*</span>成绩：</label>
 											<div class="controls">
-												<input class="span4" type="text" id="txtScore" name="Score" maxlength="3" placeholder="填写成绩"/>
+												<input class="span4" type="text" id="txtScore" name="Score" maxlength="3" placeholder="填写成绩" autocomplete="off"/>
 											</div>
 										</div>
 

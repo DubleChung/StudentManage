@@ -20,13 +20,14 @@ public class AdminDao implements AdminService {
 
 	public AdminBean adminLogin(AdminBean model) {
 		AdminBean returnModel = null;
+
+		// SQL语句
+		String sql = "select * from t_admin where uAccounts=? and uPassword=?";
+
+		// 设置SQL语句参数
+		Object[] params = { model.getUAccounts(), model.getUPassword() };
+
 		try {
-
-			// SQL语句
-			String sql = "select * from t_admin where uAccounts=? and uPassword=?";
-
-			// 设置SQL语句参数
-			Object[] params = { model.getUAccounts(), model.getUPassword() };
 
 			// 执行SQL查询
 			db.doPstm(sql, params);
@@ -46,44 +47,43 @@ public class AdminDao implements AdminService {
 				}
 			}
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} finally {
+			// 释放数据库链接
 			db.close();
 		}
 
 		return returnModel;
 	}
 
-	public boolean addAdmin(AdminBean model) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 	/**
 	 * 修改密码
 	 */
-	public boolean changePassword(int uid, String uPassword,
-			String newUPassword) {
-		
-		//待执行SQL
+	public boolean changePassword(int uid, String uPassword, String newUPassword) {
+
+		// 待执行SQL
 		String sql = "update t_admin set uPassword = ? where uid = ? and uPassword = ?";
-		
-		//SQL参数
+
+		// SQL参数
 		Object[] params = { newUPassword, uid, uPassword };
 
 		try {
-			
-			//执行数据库更新
+
+			// 执行数据库更新
 			db.doPstm(sql, params);
-			
-			//获取影响行数
+
+			// 获取影响行数
 			int rowCount = db.getCount();
-			
+
+			// 结果>0表示成功
 			return (rowCount > 0);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			// 释放数据库链接
+			db.close();
 		}
-		
+
 		return false;
 	}
 
