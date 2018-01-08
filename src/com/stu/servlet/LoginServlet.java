@@ -14,6 +14,12 @@ import com.stu.dao.AdminDao;
 import com.stu.model.AdminBean;
 import com.stu.model.MessageBean;
 
+/**
+ * 用户登录、退出操作Servlet
+ * 
+ * @author 夏宇航
+ *
+ */
 public class LoginServlet extends HttpServlet {
 
 	public LoginServlet() {
@@ -22,6 +28,9 @@ public class LoginServlet extends HttpServlet {
 
 	/**
 	 * 处理POST请求
+	 * 
+	 * @author 夏宇航
+	 * 
 	 * @param request
 	 * @param response
 	 * @throws ServletException
@@ -34,6 +43,9 @@ public class LoginServlet extends HttpServlet {
 
 	/**
 	 * 用户退出
+	 * 
+	 * @author 夏宇航
+	 * 
 	 * @param request
 	 * @param response
 	 * @throws ServletException
@@ -58,7 +70,10 @@ public class LoginServlet extends HttpServlet {
 	}
 
 	/**
-	 * 管理用户登录
+	 * 用户登录
+	 * 
+	 * @author 夏宇航
+	 * 
 	 * @param request
 	 * @param response
 	 * @throws ServletException
@@ -100,6 +115,9 @@ public class LoginServlet extends HttpServlet {
 
 	/**
 	 * 用户退出
+	 * 
+	 * @author 夏宇航
+	 * 
 	 * @param request
 	 * @param response
 	 * @throws ServletException
@@ -107,7 +125,10 @@ public class LoginServlet extends HttpServlet {
 	 */
 	private void AdminLoginOut(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		//清除登录信息
 		request.getSession().removeAttribute("LoginUser");
+		
 		//跳转到首页
 		request.getRequestDispatcher("/views/login.jsp").forward(request, response);
 	}

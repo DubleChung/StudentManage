@@ -10,7 +10,7 @@ import com.stu.service.AdminService;
 /**
  * 管理员数据库操作类
  * 
- * @author Administrator
+ * @author 夏宇航
  * 
  */
 public class AdminDao implements AdminService {
@@ -18,6 +18,12 @@ public class AdminDao implements AdminService {
 	// 实例化数据库访问对象
 	DB db = new DB();
 
+	/**
+	 * 用户登录
+	 * 
+	 * @author 夏宇航
+	 * 
+	 */
 	public AdminBean adminLogin(AdminBean model) {
 		AdminBean returnModel = null;
 
@@ -58,6 +64,9 @@ public class AdminDao implements AdminService {
 
 	/**
 	 * 修改密码
+	 * 
+	 * @author 夏宇航
+	 * 
 	 */
 	public boolean changePassword(int uid, String uPassword, String newUPassword) {
 

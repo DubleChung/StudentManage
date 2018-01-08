@@ -9,6 +9,12 @@ import com.stu.model.PageBean;
 import com.stu.model.ScoreBean;
 import com.stu.service.ScoreService;
 
+/**
+ * 学生成绩数据库操作类
+ * 
+ * @author 梁钊伟、曹强、胡代鑫、邹家华
+ *
+ */
 public class ScoreDao implements ScoreService {
 
 	// 实例化数据操作类
@@ -16,6 +22,8 @@ public class ScoreDao implements ScoreService {
 
 	/**
 	 * 添加学生成绩
+	 * 
+	 * @author 胡代鑫
 	 * 
 	 */
 	public boolean addStudentScore(String stuNo, String course, float score) {
@@ -49,6 +57,9 @@ public class ScoreDao implements ScoreService {
 
 	/**
 	 * 查询成绩信息
+	 * 
+	 * @author 梁钊伟、曹强
+	 * 
 	 */
 	public PageBean<ScoreBean> getStudentScore(String stuNo, String stuName,
 			int currentPage, int pageSize) {
@@ -76,8 +87,8 @@ public class ScoreDao implements ScoreService {
 		}
 		// 学生姓名查询条件
 		if (!("".equals(stuName))) {
-			sql += " and tb2.stuName = ? ";
-			params.add(stuName);// 学生姓名
+			sql += " and tb2.stuName like ? ";
+			params.add("%" + stuName + "%");// 学生姓名,模糊查询加%
 		}
 
 		// 分页参数
@@ -129,6 +140,8 @@ public class ScoreDao implements ScoreService {
 
 	/**
 	 * 在数据库中统计数据总条数
+	 * 
+	 * @author 梁钊伟、曹强
 	 * 
 	 * @param model
 	 * @return
@@ -183,6 +196,9 @@ public class ScoreDao implements ScoreService {
 
 	/**
 	 * 删除学生成绩信息
+	 * 
+	 * @author 邹家华
+	 * 
 	 */
 	public boolean deleteStudentScore(int sid) {
 

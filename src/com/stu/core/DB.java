@@ -66,8 +66,10 @@ public class DB {
 
 	/**
 	 * @功能：对数据库进行增、删、改、查操作 ?"占位符赋值的数据
-	 * @param sql		待执行的SQL语句
-	 * @param params	如果没有参数就填null
+	 * @param sql
+	 *            待执行的SQL语句
+	 * @param params
+	 *            如果没有参数就填null
 	 */
 	public void doPstm(String sql, Object[] params) {
 		if (sql != null && !sql.equals("")) {
@@ -95,7 +97,7 @@ public class DB {
 
 	/**
 	 * @功能：获取调用doPstm()方法执行查询操作后返回的ResultSet结果集
-	 * @返回值：ResultSet		结果集
+	 * @返回值：ResultSet 结果集
 	 * @throws SQLException
 	 */
 	public ResultSet getRs() throws SQLException {
@@ -104,7 +106,7 @@ public class DB {
 
 	/**
 	 * @功能：获取调用doPstm()方法执行更新操作后返回影响的记录数
-	 * @返回值：int				执行SQL语句影响的记录数
+	 * @返回值：int 执行SQL语句影响的记录数
 	 * @throws SQLException
 	 */
 	public int getCount() throws SQLException {

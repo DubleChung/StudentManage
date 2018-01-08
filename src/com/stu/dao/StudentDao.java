@@ -13,7 +13,7 @@ import com.stu.service.StudentService;
 /**
  * 学生类数据库操作类
  * 
- * @author Administrator
+ * @author 梁钊伟、曹强、胡代鑫、邹家华
  * 
  */
 public class StudentDao implements StudentService {
@@ -23,6 +23,9 @@ public class StudentDao implements StudentService {
 
 	/**
 	 * 添加学生信息
+	 * 
+	 * @author 胡代鑫
+	 * 
 	 */
 	public boolean addStudent(StudentBean model) {
 
@@ -58,6 +61,8 @@ public class StudentDao implements StudentService {
 
 	/**
 	 * 查询学生信息
+	 * 
+	 * @author 曹强、梁钊伟
 	 * 
 	 * @param model
 	 * @param currentPage
@@ -147,6 +152,8 @@ public class StudentDao implements StudentService {
 	/**
 	 * 在数据库中统计数据总条数
 	 * 
+	 * @author 曹强、梁钊伟
+	 * 
 	 * @param model
 	 * @return
 	 * @throws SQLException
@@ -196,7 +203,10 @@ public class StudentDao implements StudentService {
 	}
 
 	/**
-	 * 根据姓名查询学生信息【只选10个出来】
+	 * 根据姓名查询学生信息，添加成绩的时候用
+	 * 【只选10个出来】
+	 * 
+	 * @author 胡代鑫
 	 * 
 	 * @param stuName
 	 * @param currentPage
@@ -256,6 +266,8 @@ public class StudentDao implements StudentService {
 	/**
 	 * 删除学生信息
 	 * 
+	 * @author 邹家华
+	 * 
 	 * @param stuid
 	 * @return
 	 */
@@ -266,10 +278,7 @@ public class StudentDao implements StudentService {
 
 		try {
 			// 执行数据删除操作
-			db
-					.doPstm(
-							"delete from t_score where stuNo = (select stuNo from t_student where stuid = ?)",
-							params);
+			db.doPstm("delete from t_score where stuNo = (select stuNo from t_student where stuid = ?)",params);
 
 			db.doPstm("delete from t_student where stuid = ?", params);
 
@@ -290,6 +299,9 @@ public class StudentDao implements StudentService {
 
 	/**
 	 * 检查学号是否存在
+	 * 
+	 * @author 胡代鑫
+	 * 
 	 */
 	public boolean checkExists(String stuNo) {
 

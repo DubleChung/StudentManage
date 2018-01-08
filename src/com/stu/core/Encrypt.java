@@ -4,6 +4,10 @@ import java.security.*;
 import java.text.DateFormat;
 import java.util.Date;
 
+/**
+ * 加密工具类
+ * 
+ */
 public class Encrypt {
 
 	// 该方法将密码进行MD5的加密，这个方法为静态方法，可以通过类名进行直接访问
@@ -33,6 +37,7 @@ public class Encrypt {
 		DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.FULL);
 		return dateFormat.format(date);
 	}
+
 	// 该方法将参数内容进行转码，也是静态方法
 	public static String toChinese(String strvalue) {
 		try {

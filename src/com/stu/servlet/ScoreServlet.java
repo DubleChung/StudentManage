@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.stu.core.StringUtils;
 import com.stu.dao.ScoreDao;
 import com.stu.model.MessageBean;
 import com.stu.model.PageBean;
@@ -17,20 +18,19 @@ import com.stu.model.ScoreBean;
 /**
  * 学生成绩Servlet
  * 
- * @author Administrator
+ * @author 梁钊伟、曹强、胡代鑫、邹家华
  * 
  */
 public class ScoreServlet extends HttpServlet {
 
-	/**
-	 * Constructor of the object.
-	 */
 	public ScoreServlet() {
 		super();
 	}
 
 	/**
 	 * 处理GET请求
+	 * 
+	 * @author 邹家华
 	 * 
 	 * @param request
 	 * @param response
@@ -44,6 +44,8 @@ public class ScoreServlet extends HttpServlet {
 
 	/**
 	 * 处理POST请求
+	 * 
+	 * @author 邹家华
 	 * 
 	 * @param request
 	 * @param response
@@ -84,6 +86,8 @@ public class ScoreServlet extends HttpServlet {
 	/**
 	 * 删除学生成绩
 	 * 
+	 * @author 邹家华
+	 * 
 	 * @param request
 	 * @param response
 	 */
@@ -116,6 +120,8 @@ public class ScoreServlet extends HttpServlet {
 	/**
 	 * 查询学生成绩
 	 * 
+	 * @author 梁钊伟、曹强
+	 * 
 	 * @param request
 	 * @param response
 	 * @throws IOException
@@ -139,10 +145,17 @@ public class ScoreServlet extends HttpServlet {
 
 		// 取出查询参数,如果没有提交查询参数,则值为空字符串
 		//学号
-		String stuNo = (request.getParameter("stuNo") != null ? request.getParameter("stuNo") : "");
+		String stuNo = (request.getParameter("stuNo") != null ? request.getParameter("stuNo") : "").trim();
 		//学生姓名
-		String stuName = (request.getParameter("stuName") != null ? request.getParameter("stuName") : "");
+		String stuName = (request.getParameter("stuName") != null ? request.getParameter("stuName") : "").trim();
 
+		if(!stuName.isEmpty()){
+			stuName = StringUtils.toChinese(stuName);
+		}
+		if(!stuNo.isEmpty()){
+			stuNo = StringUtils.toChinese(stuNo);
+		}
+		
 		// 实例化学生数据库操作类
 		ScoreDao scoreDao = new ScoreDao();
 		// 执行数据查询
@@ -159,6 +172,8 @@ public class ScoreServlet extends HttpServlet {
 
 	/**
 	 * 添加生成成绩
+	 * 
+	 * @author 胡代鑫
 	 * 
 	 * @param request
 	 * @param response
@@ -179,6 +194,7 @@ public class ScoreServlet extends HttpServlet {
 			request.getRequestDispatcher("/views/add_student_score.jsp").forward(request, response);
 			return;
 		}
+		//转换数据类型为浮点
 		float score = Float.parseFloat(scoreStr);
 
 		// 添加学生

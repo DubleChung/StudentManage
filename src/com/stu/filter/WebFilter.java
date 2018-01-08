@@ -15,6 +15,10 @@ import javax.servlet.http.HttpSession;
 
 import com.stu.model.AdminBean;
 
+/**
+ * ¹ıÂËÆ÷
+ *
+ */
 public class WebFilter implements Filter {
 	// ±àÂëÃû³Æ
 	private String encoding;

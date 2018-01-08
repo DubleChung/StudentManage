@@ -21,7 +21,7 @@ import com.stu.model.StudentBean;
 /**
  * 学生信息Servlet
  * 
- * @author Administrator
+ * @author 梁钊伟、曹强、胡代鑫、邹家华
  * 
  */
 public class StudentServlet extends HttpServlet {
@@ -32,6 +32,9 @@ public class StudentServlet extends HttpServlet {
 
 	/**
 	 * 处理GET请求
+	 * 
+	 * @author 邹家华
+	 * 
 	 * @param request
 	 * @param response
 	 * @throws ServletException
@@ -45,6 +48,9 @@ public class StudentServlet extends HttpServlet {
 
 	/**
 	 * 处理POST请求
+	 * 
+	 * @author 邹家华
+	 * 
 	 * @param request
 	 * @param response
 	 * @throws ServletException
@@ -80,6 +86,9 @@ public class StudentServlet extends HttpServlet {
 	
 	/**
 	 * 删除学生信息
+	 * 
+	 * @author 邹家华
+	 * 
 	 * @param request
 	 * @param response
 	 * @throws ServletException
@@ -96,7 +105,6 @@ public class StudentServlet extends HttpServlet {
 
 		// 实例化学生数据库操作类
 		StudentDao studenteDao = new StudentDao();
-		ScoreDao scoreDao = new ScoreDao();
 		
 		// 执行数据删除
 		boolean result = studenteDao.deleteStudent(stuid);
@@ -114,9 +122,69 @@ public class StudentServlet extends HttpServlet {
         out.flush();
         out.close();
 	}
-	
+		
 	/**
-	 * 根据姓名查询学生信息【只选10个出来】
+	 * 查询学生信息
+	 * 
+	 * @author 曹强、梁钊伟
+	 * 
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void QueryStudents(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		// 页码，默认页码是1
+		int currentPage = Integer.parseInt(request.getParameter("currentPage") != null ? request.getParameter("currentPage") : "1");
+		// 页大小，默认页大小是10
+		int pageSize = Integer.parseInt(request.getParameter("pageSize") != null ? request.getParameter("pageSize") : "10");
+
+		// 对不合法的页码和页大小重新赋值
+		if (currentPage < 1) {
+			currentPage = 1;// 默认页码是1
+		}
+		if (pageSize < 10) {
+			pageSize = 10;// 默认页大小是10
+		}
+
+		//取出查询参数,如果没有提交查询参数,则值为空字符串
+		String stuName = (request.getParameter("stuName") != null ? request.getParameter("stuName") : "").trim();
+		String stuNo = (request.getParameter("stuNo") != null ? request.getParameter("stuNo") : "").trim();
+		
+		if(!stuName.isEmpty()){
+			stuName = StringUtils.toChinese(stuName);
+		}
+		if(!stuNo.isEmpty()){
+			stuNo = StringUtils.toChinese(stuNo);
+		}
+		
+		// 初始化查询参数类
+		StudentBean studentBean = new StudentBean();
+		studentBean.setStuName(stuName);// 姓名
+		studentBean.setStuNo(stuNo);// 学号
+
+		// 实例化学生数据库操作类
+		StudentDao studentDao = new StudentDao();
+		// 执行数据查询
+		PageBean<StudentBean> pageBean = studentDao.getStudents(studentBean, currentPage,pageSize);
+
+		// 向页面传递数据
+		request.setAttribute("pageBean", pageBean);//分页数据对象
+		request.setAttribute("stuName", stuName);//姓名查询条件
+		request.setAttribute("stuNo", stuNo);//学号查询条件
+
+		// 请求回发
+		request.getRequestDispatcher("/views/search_student.jsp").forward(request, response);
+	}
+
+	/**
+	 * 根据姓名查询学生信息，添加成绩的时候用
+	 * 【只选10个出来】
+	 * 
+	 * @author 胡代鑫
+	 * 
 	 * @param request
 	 * @param response
 	 * @throws ServletException
@@ -126,9 +194,8 @@ public class StudentServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		//取出查询参数,如果没有提交查询参数,则值为空字符串
-		String stuName = (request.getParameter("query") != null ? request.getParameter("query") : "");
-		String a = StringUtils.toChinese(stuName);
-		String b = StringUtils.toUTF8(a);
+		String stuName = (request.getParameter("query") != null ? request.getParameter("query") : "").trim();
+
 		// 实例化学生数据库操作类
 		StudentDao studentDao = new StudentDao();
 		// 执行数据查询
@@ -167,61 +234,9 @@ public class StudentServlet extends HttpServlet {
 	}
 	
 	/**
-	 * 查询学生信息
-	 * 
-	 * @param request
-	 * @param response
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	private void QueryStudents(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
-		// 页码，默认页码是1
-		int currentPage = Integer.parseInt(request.getParameter("currentPage") != null ? request.getParameter("currentPage") : "1");
-		// 页大小，默认页大小是10
-		int pageSize = Integer.parseInt(request.getParameter("pageSize") != null ? request.getParameter("pageSize") : "10");
-
-		// 对不合法的页码和页大小重新赋值
-		if (currentPage < 1) {
-			currentPage = 1;// 默认页码是1
-		}
-		if (pageSize < 10) {
-			pageSize = 10;// 默认页大小是10
-		}
-
-		//取出查询参数,如果没有提交查询参数,则值为空字符串
-		String stuName = (request.getParameter("stuName") != null ? request.getParameter("stuName") : "");
-		String stuNo = (request.getParameter("stuNo") != null ? request.getParameter("stuNo") : "");
-		
-		if(!stuName.isEmpty()){
-			stuName = StringUtils.toChinese(stuName);
-		}
-		if(!stuNo.isEmpty()){
-			stuNo = StringUtils.toChinese(stuNo);
-		}
-		
-		// 初始化查询参数类
-		StudentBean studentBean = new StudentBean();
-		studentBean.setStuName(stuName);// 姓名
-		studentBean.setStuNo(stuNo);// 学号
-
-		// 实例化学生数据库操作类
-		StudentDao studentDao = new StudentDao();
-		// 执行数据查询
-		PageBean<StudentBean> pageBean = studentDao.getStudents(studentBean, currentPage,pageSize);
-
-		// 向页面传递数据
-		request.setAttribute("pageBean", pageBean);//分页数据对象
-		request.setAttribute("stuName", stuName);//姓名查询条件
-		request.setAttribute("stuNo", stuNo);//学号查询条件
-
-		// 请求回发
-		request.getRequestDispatcher("/views/search_student.jsp").forward(request, response);
-	}
-
-	/**
 	 * 添加学生
+	 * 
+	 * @author 胡代鑫
 	 * 
 	 * @param request
 	 * @param response

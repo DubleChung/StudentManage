@@ -16,8 +16,9 @@ import com.stu.model.AdminBean;
 import com.stu.model.MessageBean;
 
 /**
- * 管理员Servlet
+ * 管理员用户操作Servlet
  * 
+ * @author 夏宇航
  */
 public class AdminServlet extends HttpServlet {
 
@@ -27,6 +28,9 @@ public class AdminServlet extends HttpServlet {
 
 	/**
 	 * 处理GET请求
+	 * 
+	 * @author 夏宇航
+	 * 
 	 * @param request
 	 * @param response
 	 * @throws ServletException
@@ -39,6 +43,9 @@ public class AdminServlet extends HttpServlet {
 
 	/**
 	 * 处理POST请求
+	 * 
+	 * @author 夏宇航
+	 * 
 	 * @param request
 	 * @param response
 	 * @throws ServletException
@@ -61,6 +68,9 @@ public class AdminServlet extends HttpServlet {
 	
 	/**
 	 * 修改管理员密码
+	 * 
+	 * @author 夏宇航
+	 * 
 	 * @param request
 	 * @param response
 	 * @throws ServletException

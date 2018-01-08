@@ -5,11 +5,15 @@ import com.stu.model.AdminBean;
 /***
  * 管理员Service
  * 
+ * @author 夏宇航
+ * 
  */
 public interface AdminService {
 
 	/**
 	 * 管理员登录
+	 * 
+	 * @author 夏宇航
 	 * 
 	 * @param model
 	 * @return
@@ -18,6 +22,8 @@ public interface AdminService {
 
 	/**
 	 * 修改管理员密码
+	 * 
+	 * @author 夏宇航
 	 * 
 	 * @param model
 	 * @param newPassword
