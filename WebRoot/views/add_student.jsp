@@ -11,7 +11,7 @@
 <html>
 	<head>
 		<base href="<%=basePath %>">
-		<title>添加学生信息</title>
+		<title>学生注册</title>
 		<!-- 引入公共网页头部 -->
 		<jsp:include page="/views/include_common.jsp"/>
 		
@@ -84,7 +84,7 @@
                         	
 						<div class="module">
 							<div class="module-head">
-								<b>添加学生</b>
+								<b>学生注册</b>
 							</div>
 							<div class="module-body">
 									<form action="student" class="form-horizontal row-fluid" method="post" onsubmit="return formCheck();">

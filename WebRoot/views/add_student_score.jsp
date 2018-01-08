@@ -11,7 +11,7 @@
 <html>
 	<head>
 		<base href="<%=basePath %>">
-		<title>添加学生成绩</title>
+		<title>成绩添加</title>
 		<!-- 引入公共网页头部 -->
 		<jsp:include page="/views/include_common.jsp"/>
 		<script type="text/javascript" src="scripts/jquery.autocomplete.js"></script>
@@ -105,7 +105,7 @@
                         	
 						<div class="module">
 							<div class="module-head">
-								<b>添加成绩</b>
+								<b>成绩添加</b>
 							</div>
 							<div class="module-body">
 									<form action="score" class="form-horizontal row-fluid" method="post" onsubmit="return formCheck();">

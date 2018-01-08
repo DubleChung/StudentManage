@@ -12,7 +12,7 @@
 <html>
 	<head>
 		<base href="<%=basePath %>">
-		<title>学生成绩查询</title>
+		<title>成绩查询</title>
 		<!-- 引入公共网页头部 -->
 		<jsp:include page="/views/include_common.jsp"/>
 		<script type="text/javascript">
@@ -59,7 +59,7 @@
                         	<!-- 页面右侧内容 -->
                         	<div class="module">
 							<div class="module-head">
-								<b>学生查询</b>
+								<b>成绩查询</b>
 							</div>
 							<div class="module-body table">
 								<div class="dataTables_length">

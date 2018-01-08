@@ -14,12 +14,12 @@
         </li>
         <li>
 	        <a href="score?cmd=scorelist">
-	        	<i class="menu-icon icon-link"></i>查询成绩
+	        	<i class="menu-icon icon-link"></i>成绩查询
 	        </a>
         </li>
         <li>
 	        <a href="views/add_student_score.jsp">
-	        	<i class="menu-icon icon-link"></i>添加成绩
+	        	<i class="menu-icon icon-link"></i>成绩添加
 	        </a>
         </li>
 	</ul>
