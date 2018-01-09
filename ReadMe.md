@@ -7,9 +7,12 @@ javaee5 jdk1.6 、MyEclipse7.5 MySQL5.0
 账号：admin
 密码：123456
 
-#### 数据库
-根据实际情况配置数据地址及用户名密码  
-/src/DB.properties 为数据配置文件
+#### 数据库 
+数据库脚本位置：/数据库/student_db.sql  
+请自行创建数据库 student_db  
+1. 管理员信息表 t_admin  
+2. 学生成绩信息表 t_score  
+3. 学生信息表 t_student
 
 #
 #### 文件说明
@@ -19,7 +22,7 @@ javaee5 jdk1.6 、MyEclipse7.5 MySQL5.0
 ##### /src/com/stu/model 数据Bean包  
 ##### /src/com/stu/service  数据服务接口包  
 ##### /src/com/stu/servlet  Servlet包  
-##### /src/DB.properties 为数据配置文件  
+##### /src/DB.properties 为数据配置文件 ,根据实际情况配置数据地址及用户名密码
 
 ##### /WebRoot/bootstrap Bootstrap目前最受欢迎的前端框架
 ##### /WebRoot/css 公共样式文件夹
