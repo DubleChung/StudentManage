@@ -14,6 +14,7 @@ import com.stu.core.Encrypt;
 import com.stu.dao.AdminDao;
 import com.stu.model.AdminBean;
 import com.stu.model.MessageBean;
+import com.stu.service.AdminService;
 
 /**
  * 管理员用户操作Servlet
@@ -54,9 +55,6 @@ public class AdminServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// 设置响应内容类型
-		response.setContentType("text/html");
-
 		// 根据不同的cmd执行不同的操作
 		String cmd = request.getParameter("cmd");
 		
@@ -78,6 +76,9 @@ public class AdminServlet extends HttpServlet {
 	 */
 	private void AdminPwdChange(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
+		// 设置响应内容类型
+		response.setContentType("text/html");
 
 		//新密码
 		String newPwd = request.getParameter("newUPassword");
@@ -109,8 +110,8 @@ public class AdminServlet extends HttpServlet {
 		AdminBean loginUser = (AdminBean)request.getSession().getAttribute("LoginUser");
 		
 		//执行数据库更新操作
-		AdminDao adminDao = new AdminDao();
-		boolean result = adminDao.changePassword(loginUser.getUid(),Encrypt.encode(uPwd),Encrypt.encode(newPwd));
+		AdminService adminService = new AdminDao();
+		boolean result = adminService.changePassword(loginUser.getUid(),Encrypt.encode(uPwd),Encrypt.encode(newPwd));
 		
 		//判断数据执行结果，并设置相应的页面提示消息
 		if(result == true) {

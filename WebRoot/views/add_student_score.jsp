@@ -14,25 +14,29 @@
 		<title>成绩添加</title>
 		<!-- 引入公共网页头部 -->
 		<jsp:include page="/views/include_common.jsp"/>
-		<script type="text/javascript" src="scripts/jquery.autocomplete.js"></script>
+		<!-- 引入自动补全插件 -->
+		<script type="text/javascript" src="scripts/jquery.autocomplete.min.js"></script>
 		<style type="text/css">
 			.autocomplete-suggestions { border: 1px solid #999; background: #FFF; overflow: auto; }
 			.autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }
 			.autocomplete-selected { background: #F0F0F0; }
 			.autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
 		</style>
-		<script type="text/javascript">
+		<script type="text/javascript">		
 			
-		
+			//文档加载完成，执行自动补全插件初始化
 			$(function(){
+			
+				//自动补全插件
+				//用于搜索学生名字
 				$('#txtStuName').autocomplete({
 				    serviceUrl: 'student?cmd=json_stulist&currentPage=1&stuName=' + $.trim($('#txtStuName').val()),//只用姓名条件
 				    onSelect: function (selData) {
-				    	if(window.console && window.console.log)
-				    		console.log(selData);
+				    	//当选中一条数据时，将学号设置到隐藏字段中
 				    	$('#hdStuNo').val(selData.data);
        				}
 				});
+				
 			});
 		
 			

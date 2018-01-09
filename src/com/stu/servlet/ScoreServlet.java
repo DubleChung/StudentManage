@@ -14,6 +14,7 @@ import com.stu.dao.ScoreDao;
 import com.stu.model.MessageBean;
 import com.stu.model.PageBean;
 import com.stu.model.ScoreBean;
+import com.stu.service.ScoreService;
 
 /**
  * 学生成绩Servlet
@@ -56,30 +57,16 @@ public class ScoreServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String cmd = request.getParameter("cmd");
-		if ("addscore".equals(cmd)) {
-
-			// 设置响应内容类型
-			response.setContentType("text/html");
-			
+		
+		if ("addscore".equals(cmd)) {			
 			// 添加学生成绩
 			AddStudentScore(request, response);
-			
-		} else if ("scorelist".equals(cmd)) {
-
-			// 设置响应内容类型
-			response.setContentType("text/html");
-			
+		} else if ("scorelist".equals(cmd)) {			
 			// 查询学生成绩
-			QueryStudentScore(request, response);
-			
-		} else if ("deletescore".equals(cmd)) {
-
-			// 设置响应内容类型
-	        response.setContentType("application/json");
-			
+			QueryStudentScore(request, response);			
+		} else if ("deletescore".equals(cmd)) {			
 			// 删除学生成绩
-			DeleteStudentScore(request, response);
-			
+			DeleteStudentScore(request, response);			
 		}
 	}
 
@@ -93,14 +80,18 @@ public class ScoreServlet extends HttpServlet {
 	 */
 	private void DeleteStudentScore(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
+		// 设置响应内容类型
+        response.setContentType("application/json");
+        
 		// 成绩标识ID
 		int sid = Integer.parseInt(request.getParameter("sid") != null ? request.getParameter("sid") : "0");
 
 		// 实例化学生数据库操作类
-		ScoreDao scoreDao = new ScoreDao();
+		ScoreService scoreService = new ScoreDao();
 
 		// 执行数据删除
-		boolean result = scoreDao.deleteStudentScore(sid);
+		boolean result = scoreService.deleteStudentScore(sid);
 	
 		//json 数据字符串
 		StringBuffer sb = new StringBuffer();
@@ -130,6 +121,9 @@ public class ScoreServlet extends HttpServlet {
 	private void QueryStudentScore(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+		// 设置响应内容类型
+		response.setContentType("text/html");
+
 		// 页码，默认页码是1
 		int currentPage = Integer.parseInt(request.getParameter("currentPage") != null ? request.getParameter("currentPage") : "1");
 		// 页大小，默认页大小是10
@@ -157,9 +151,10 @@ public class ScoreServlet extends HttpServlet {
 		}
 		
 		// 实例化学生数据库操作类
-		ScoreDao scoreDao = new ScoreDao();
+		ScoreService scoreService = new ScoreDao();
+		
 		// 执行数据查询
-		PageBean<ScoreBean> pageBean = scoreDao.getStudentScore(stuNo,stuName,currentPage, pageCount);
+		PageBean<ScoreBean> pageBean = scoreService.getStudentScore(stuNo,stuName,currentPage, pageCount);
 
 		// 向页面传递数据
 		request.setAttribute("pageBean", pageBean);// 分页数据对象
@@ -180,6 +175,10 @@ public class ScoreServlet extends HttpServlet {
 	 */
 	private void AddStudentScore(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
+		// 设置响应内容类型
+		response.setContentType("text/html");
+		
 		// 学号
 		String stuNo = (request.getParameter("stuNo") != null ? request.getParameter("stuNo") : "");
 		// 课程
@@ -197,12 +196,11 @@ public class ScoreServlet extends HttpServlet {
 		//转换数据类型为浮点
 		float score = Float.parseFloat(scoreStr);
 
-		// 添加学生
 		// 实例化学生数据库操作类
-		ScoreDao scoreDao = new ScoreDao();
+		ScoreService scoreService = new ScoreDao();
 
 		// 执行数据库添加
-		boolean result = scoreDao.addStudentScore(stuNo, course, score);
+		boolean result = scoreService.addStudentScore(stuNo, course, score);
 
 		// 根据数据库返回结果，设置页面提示消息
 		if (result == true) {

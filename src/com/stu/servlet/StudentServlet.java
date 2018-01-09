@@ -17,6 +17,7 @@ import com.stu.dao.StudentDao;
 import com.stu.model.MessageBean;
 import com.stu.model.PageBean;
 import com.stu.model.StudentBean;
+import com.stu.service.StudentService;
 
 /**
  * 学生信息Servlet
@@ -59,26 +60,18 @@ public class StudentServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-
 		String cmd = request.getParameter("cmd");
+		
 		if ("add".equals(cmd)) {
-			// 设置响应内容类型
-			response.setContentType("text/html");
 			// 添加学生信息
 			AddStudent(request, response);
 		} else if ("stulist".equals(cmd)) {
-			// 设置响应内容类型
-			response.setContentType("text/html");
 			// 查询学生信息
 			QueryStudents(request, response);
 		} else if("json_stulist".equals(cmd)) {
-			// 设置响应内容类型
-	        response.setContentType("application/json");
 			//根据姓名查询学生信息
 			QueryStudentToJson(request,response);
 		} else if("deletestudent".equals(cmd)){
-			// 设置响应内容类型
-	        response.setContentType("application/json");
 			// 删除学生信息
 			DeleteStudent(request, response);
 		}
@@ -96,18 +89,20 @@ public class StudentServlet extends HttpServlet {
 	 */
 	private void DeleteStudent(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		// 设置响应内容类型
+        response.setContentType("application/json");
+        
 		// 学生标识ID
 		int stuid = Integer.parseInt(request.getParameter("stuid") != null ? request.getParameter("stuid") : "0");
-
 
 		//json 数据字符串
 		StringBuffer sb = new StringBuffer();
 
 		// 实例化学生数据库操作类
-		StudentDao studenteDao = new StudentDao();
+		StudentService studentService = new StudentDao();
 		
 		// 执行数据删除
-		boolean result = studenteDao.deleteStudent(stuid);
+		boolean result = studentService.deleteStudent(stuid);
 		
 		//判断学生删除结果
 		if(result == true){
@@ -135,6 +130,9 @@ public class StudentServlet extends HttpServlet {
 	 */
 	private void QueryStudents(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		// 设置响应内容类型
+		response.setContentType("text/html");
 
 		// 页码，默认页码是1
 		int currentPage = Integer.parseInt(request.getParameter("currentPage") != null ? request.getParameter("currentPage") : "1");
@@ -166,9 +164,10 @@ public class StudentServlet extends HttpServlet {
 		studentBean.setStuNo(stuNo);// 学号
 
 		// 实例化学生数据库操作类
-		StudentDao studentDao = new StudentDao();
+		StudentService studentService = new StudentDao();
+		
 		// 执行数据查询
-		PageBean<StudentBean> pageBean = studentDao.getStudents(studentBean, currentPage,pageSize);
+		PageBean<StudentBean> pageBean = studentService.getStudents(studentBean, currentPage,pageSize);
 
 		// 向页面传递数据
 		request.setAttribute("pageBean", pageBean);//分页数据对象
@@ -192,14 +191,18 @@ public class StudentServlet extends HttpServlet {
 	 */
 	private void QueryStudentToJson(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		// 设置响应内容类型
+        response.setContentType("application/json");
 
 		//取出查询参数,如果没有提交查询参数,则值为空字符串
 		String stuName = (request.getParameter("query") != null ? request.getParameter("query") : "").trim();
 
 		// 实例化学生数据库操作类
-		StudentDao studentDao = new StudentDao();
+		StudentService studentService = new StudentDao();
+		
 		// 执行数据查询
-		List stuList = studentDao.getStudents(StringUtils.toUTF8(stuName));//转换下gbk编码,因为数据库用的是gbk编码
+		List stuList = studentService.getStudents(StringUtils.toUTF8(stuName));//ajax post 提交过来的是utf8编码，晕
 		
 		//json 数据字符串
 		StringBuffer sb = new StringBuffer();
@@ -246,6 +249,8 @@ public class StudentServlet extends HttpServlet {
 	private void AddStudent(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+		// 设置响应内容类型
+		response.setContentType("text/html");
 
 		// 获取页面提交的参数
 		String stuName = request.getParameter("stuName");

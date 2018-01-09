@@ -13,6 +13,7 @@ import com.stu.core.Encrypt;
 import com.stu.dao.AdminDao;
 import com.stu.model.AdminBean;
 import com.stu.model.MessageBean;
+import com.stu.service.AdminService;
 
 /**
  * 用户登录、退出操作Servlet
@@ -54,9 +55,6 @@ public class LoginServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// 设置响应内容类型
-		response.setContentType("text/html");
-
 		// 根据不同的cmd执行不同的操作
 		String cmd = request.getParameter("cmd");
 		
@@ -81,14 +79,18 @@ public class LoginServlet extends HttpServlet {
 	 */
 	private void AdminLogin(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
+		// 设置响应内容类型
+		response.setContentType("text/html");
+		
 		// 实例化管理员类，取出登录表单中的参数值，并赋值给相应的属性
 		AdminBean adminBean = new AdminBean();
 		adminBean.setUAccounts(request.getParameter("uAccounts"));
 		adminBean.setUPassword(Encrypt.encode(request.getParameter("uPassword")));
 
-		AdminDao adminDao = new AdminDao();
+		AdminService adminService = new AdminDao();
 		// 执行数据库查询验证
-		AdminBean loginBean = adminDao.adminLogin(adminBean);
+		AdminBean loginBean = adminService.adminLogin(adminBean);
 		if (loginBean != null && loginBean.getUid() > 0) {
 			
 			// 登录验证成功，把用户信息写入到Session
@@ -125,6 +127,9 @@ public class LoginServlet extends HttpServlet {
 	 */
 	private void AdminLoginOut(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
+		// 设置响应内容类型
+		response.setContentType("text/html");
 		
 		//清除登录信息
 		request.getSession().removeAttribute("LoginUser");

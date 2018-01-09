@@ -30,6 +30,7 @@
 					var param = { cmd : 'deletescore' , sid : _sid };
 					$.post('score',param,function(data){
 						if(data && data.msg){
+							//消息提示
 							alert(data.msg);
 							if(data.code == 1){
 								window.location.reload();//重新加载当前页面
