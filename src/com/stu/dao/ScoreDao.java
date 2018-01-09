@@ -12,7 +12,7 @@ import com.stu.service.ScoreService;
 /**
  * 学生成绩数据库操作类
  * 
- * @author 梁钊伟、曹强、胡代鑫、邹家华
+ * @author 梁钊伟、胡代鑫、曹强、邹家华
  *
  */
 public class ScoreDao implements ScoreService {

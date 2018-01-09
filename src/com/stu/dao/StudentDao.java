@@ -152,7 +152,7 @@ public class StudentDao implements StudentService {
 	/**
 	 * 在数据库中统计数据总条数
 	 * 
-	 * @author 曹强、梁钊伟
+	 * @author 梁钊伟、曹强
 	 * 
 	 * @param model
 	 * @return

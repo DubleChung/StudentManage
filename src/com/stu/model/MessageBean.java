@@ -2,7 +2,7 @@ package com.stu.model;
 
 /**
  * 消息类
- * @author Administrator
+ * @author 邹家华
  *
  */
 public class MessageBean {

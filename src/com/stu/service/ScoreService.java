@@ -8,10 +8,15 @@ import com.stu.model.ScoreBean;
 /***
  * 成绩信息Service
  * 
+ * @author 胡代鑫、邹家华、梁钊伟、曹强
+ * 
  */
 public interface ScoreService {
 	/**
 	 * 添加成绩信息
+	 * 
+	 * @author 胡代鑫
+	 * 
 	 * @param stuNo 学号
 	 * @param course 课程
 	 * @param score 成绩
@@ -21,6 +26,9 @@ public interface ScoreService {
 
 	/**
 	 * 删除成绩信息
+	 * 
+	 * @author 邹家华
+	 * 
 	 * @param sid 成绩标识ID
 	 * @return
 	 */
@@ -28,6 +36,9 @@ public interface ScoreService {
 	
 	/**
 	 * 查询成绩信息
+	 * 
+	 * @author 梁钊伟、曹强
+	 * 
 	 * @param stuNo 学号
 	 * @param currentPage 当前页码
 	 * @param pageSize 页大小

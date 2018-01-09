@@ -7,6 +7,8 @@ import java.util.Date;
 /**
  * 加密工具类
  * 
+ * @author 夏宇航
+ * 
  */
 public class Encrypt {
 

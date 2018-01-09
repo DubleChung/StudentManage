@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * ∑÷“≥¿‡
  * 
- * @author Administrator
+ * @author ≤‹«ø°¢¡∫Ó»Œ∞
  * 
  */
 public class PageBean<T> {

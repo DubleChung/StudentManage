@@ -8,7 +8,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
-
+/**
+ * Êı¾İ¿â°ïÖúÀà
+ * @author ÏÄÓîº½
+ *
+ */
 public class DB {
 	private Connection conn;
 	private PreparedStatement pstm;

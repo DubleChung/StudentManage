@@ -3,7 +3,7 @@ package com.stu.model;
 /**
  * ≥…º®¿‡
  * 
- * @author Administrator
+ * @author ¡∫Ó»Œ∞°¢≤‹«ø
  * 
  */
 public class ScoreBean {

@@ -2,7 +2,7 @@ package com.stu.model;
 
 /**
  * 学生类
- * @author Administrator
+ * @author 胡代鑫
  *
  */
 public class StudentBean {

@@ -17,6 +17,8 @@ import com.stu.model.AdminBean;
 
 /**
  * 过滤器
+ * 
+ * @author 夏宇航
  *
  */
 public class WebFilter implements Filter {
@@ -105,8 +107,7 @@ public class WebFilter implements Filter {
 		// 登录、退出页面正则表达式
 		this.loginRegexp = Pattern.compile("login");
 		// JS CSS 图片等文件正则表达式
-		this.mediaRegexp = Pattern
-				.compile("\\.(css|js|png|jpg|jpeg|jpe|gif|bmp|tga|ico|pns|pdf|woff|eot|ttf)($|\\?)");
+		this.mediaRegexp = Pattern.compile("\\.(css|js|png|jpg|jpeg|jpe|gif|bmp|tga|ico|pns|pdf|woff|eot|ttf)($|\\?)");
 	}
 
 }

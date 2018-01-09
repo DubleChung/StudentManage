@@ -7,6 +7,8 @@ import java.text.ParseException;
 /**
  * 字符串工具类
  * 
+ * @author 夏宇航
+ * 
  */
 // 对字符串进行GBK编码
 public class StringUtils {

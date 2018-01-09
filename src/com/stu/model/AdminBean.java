@@ -2,7 +2,7 @@ package com.stu.model;
 
 /**
  * 管理员类
- * @author Administrator
+ * @author 夏宇航
  *
  */
 public class AdminBean {
